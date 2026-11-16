@@ -65,14 +65,15 @@
 .docs-section h2 { font-family: var(--font-display); font-size: clamp(1.5rem, 2.2vw, 2rem); line-height: 1.25; font-weight: 750; letter-spacing: -.015em; margin: 0 0 1.2rem; }
 .docs-heading-link { color: var(--accent-text) !important; padding: 0 .4rem; font-size: .75em; font-family: var(--font-mono); text-decoration: none; }
 .docs-section:target .docs-heading-link, .docs-heading-link:hover { text-decoration: underline; }
-.docs-section p { margin: 1rem 0; }
+.docs-section p { margin: 1rem 0; overflow-wrap: anywhere; }
+.docs-section p a, .docs-section li a, .docs-note p a { color: var(--accent-text); text-decoration: underline; text-underline-offset: .25rem; }
 .docs-section ul, .docs-section ol { padding-left: 1.4rem; margin: 1.1rem 0; }
 .docs-section ul { list-style: disc; }
 .docs-section ol { list-style: decimal; }
-.docs-section li { margin: .6rem 0; padding-left: .3rem; }
+.docs-section li { margin: .6rem 0; padding-left: .3rem; overflow-wrap: anywhere; }
 .docs-section li::marker { color: var(--accent-text); font-weight: 600; }
 .docs-note { margin: 1.4rem 0; padding: 1rem 1.2rem; border: 1px solid color-mix(in srgb, var(--color-burnt) 28%, transparent); border-radius: .7rem; background: color-mix(in srgb, var(--color-burnt) 5%, var(--canvas)); }
-.docs-note p { font-size: .9rem; margin: .4rem 0 0; }
+.docs-note p { font-size: .9rem; margin: .4rem 0 0; overflow-wrap: anywhere; }
 .docs-note strong { font-size: .85rem; }
 .docs-table-wrap { margin: 1.4rem 0; overflow-x: auto; border: 1px solid color-mix(in srgb, var(--fg) 13%, transparent); border-radius: .6rem; }
 .docs-table { width: 100%; border-collapse: collapse; text-align: left; font-size: .87rem; }
@@ -94,6 +95,7 @@
 }
 @media (max-width: 640px) {
   .docs-table th, .docs-table td { min-width: 0; padding: .65rem .65rem; font-size: .8rem; overflow-wrap: anywhere; }
+  .docs-links a { min-height: 44px; display: inline-flex; align-items: center; }
 }
 @media (max-width: 480px) {
   .docs-home-link { display: none !important; }

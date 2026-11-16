@@ -17,7 +17,7 @@ export function renderBlock(block: DocBlock, title: string): string {
     case 'ol':
     case 'ul': return '<' + block.kind + '>' + block.items.map(item => '<li>' + escapeHtml(item) + '</li>').join('') + '</' + block.kind + '>';
     case 'code': return '<pre class="docs-code" tabindex="0"><code class="language-' + block.language + '">' + escapeHtml(block.text) + '</code></pre>';
-    case 'note': return '<aside class="docs-note"><strong>' + escapeHtml(block.title) + '</strong><p>' + escapeHtml(block.text) + '</p></aside>';
+    case 'note': return '<div role="note" class="docs-note"><strong>' + escapeHtml(block.title) + '</strong><p>' + escapeHtml(block.text) + '</p></div>';
     case 'links': return '<div class="docs-links">' + block.items.map(link => externalLink(link.label, link.url)).join('') + '</div>';
     case 'table': return '<div class="docs-table-wrap" role="region" tabindex="0" aria-label="' + escapeHtml(title) + '"><table class="docs-table"><thead><tr>' + block.headings.map(heading => '<th scope="col">' + escapeHtml(heading) + '</th>').join('') + '</tr></thead><tbody>' + block.rows.map(row => '<tr>' + row.map(cell => '<td>' + escapeHtml(cell) + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
   }

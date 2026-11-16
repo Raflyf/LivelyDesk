@@ -146,6 +146,8 @@ export interface Translation {
     signingReviewersLabel: string;
     signingApproversLabel: string;
     signingRoleValue: string;
+    signingReviewersNote: string;
+    signingApproversNote: string;
     privacyTitle: string;
     privacyIntro: string;
     privacyWpLabel: string;

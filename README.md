@@ -25,6 +25,8 @@
   <a href="#tech-stack">Tech Stack</a> ·
   <a href="#quick-start">Quick Start</a> ·
   <a href="#deploy-to-vercel">Vercel Deploy</a> ·
+  <a href="#code-signing-policy">Code signing policy</a> ·
+  <a href="#privacy-policy">Privacy policy</a> ·
   <a href="#support">Support</a>
 </p>
 
@@ -190,6 +192,28 @@ If you find these projects helpful, consider supporting their ongoing developmen
 
 - Tip directly via QRIS, Card, E-Wallet, or USDT at **[yapp.ink/raflyf](https://yapp.ink/raflyf)**.
 - Support through **[Saweria (BuyMatcha)](https://saweria.co/BuyMatcha)**.
+
+---
+
+## Code signing policy
+
+Free code signing provided by [SignPath.io](https://signpath.io/), certificate by [SignPath Foundation](https://signpath.org/).
+
+Releases published prior to SignPath CI integration (including WallpaperLive `v0.2.1` and TransparentBar `v0.2.4`) remain unsigned until release signing is enabled in their upstream GitHub Actions workflows ([WallpaperLive Windows checks](https://github.com/Raflyf/WallpaperLive/blob/main/.github/workflows/ci.yml) and [TransparentBar Build Windows EXE](https://github.com/Raflyf/TransparentBar/blob/main/.github/workflows/build.yml)). Signed releases are built automatically from public repository source on GitHub Actions.
+
+- **Authors / Committers:** [Rafly Firmansyah (`@Raflyf`)](https://github.com/Raflyf)
+- **Reviewers:** [Rafly Firmansyah (`@Raflyf`)](https://github.com/Raflyf) (all pull requests require maintainer review before merge)
+- **Approvers:** [Rafly Firmansyah (`@Raflyf`)](https://github.com/Raflyf) (reviews release tags and approves signing requests)
+- **Application policies:** [WallpaperLive Code signing policy](https://github.com/Raflyf/WallpaperLive#code-signing-policy) · [TransparentBar Code signing policy](https://github.com/Raflyf/TransparentBar#code-signing-policy) · [LivelyDesk Download Hub](https://livelydesk.vercel.app/#code-signing-policy)
+- **Privacy policy:** See [Privacy policy](#privacy-policy).
+
+## Privacy policy
+
+WallpaperLive, TransparentBar, and the LivelyDesk website do not collect, store, or transmit personal information, telemetry, analytics, local media file paths, screen captures, or user preferences to developer servers or third parties.
+
+- **WallpaperLive:** Settings, library entries, thumbnails, and cached SDR media copies are stored locally under `%LOCALAPPDATA%\WallpaperLive`. On startup and when triggered manually from the tray menu, WallpaperLive sends a single read-only HTTPS `GET` request to `https://api.github.com/repos/Raflyf/WallpaperLive/releases/latest` with `User-Agent: WallpaperLive/<version>` and cookies, redirects, and authentication disabled. No media paths, settings, or personal identifiers are sent, and release pages open in your browser only after confirmation. When a verified `libmpv-2.dll` is not already installed or supplied locally beside the installer as `mpv-dev.7z`, Setup requests explicit user consent before downloading the pinned archive from GitHub (`shinchiro/mpv-winbuild-cmake`) and checks SHA256 before extraction. Selecting links under *Where to find wallpapers*, *Settings*, or the tray update notification opens third-party sites in your default browser under their own privacy policies. See [WallpaperLive Privacy policy](https://github.com/Raflyf/WallpaperLive#privacy-policy).
+- **TransparentBar:** Tray preferences (`TaskbarConnector`, `TaskbarPattern`, `ReduceMotion`) are stored locally under `HKCU\Software\TransparentBar`, optional startup at sign-in writes only to `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`, and startup diagnostics are saved locally to `%LOCALAPPDATA%\TransparentBar\startup.log`. Screen edge samples for the maximized-window connector are processed solely in memory and are never saved to disk or transmitted over the network. On startup and when triggered manually from *Check for updates*, TransparentBar sends read-only HTTPS requests (`HEAD https://github.com/Raflyf/TransparentBar/releases/latest` with redirects disabled, falling back to `GET https://api.github.com/repos/Raflyf/TransparentBar/releases/latest`) with `User-Agent: TransparentBar` to compare release tags. No personal identifiers, local paths, or screen data are sent, and release pages open in your browser only when you choose to open them. Selecting *Buy me a coffee*, *Support via Saweria*, or repository links opens external websites in your default browser under their own privacy policies. See [TransparentBar Privacy policy](https://github.com/Raflyf/TransparentBar#privacy-policy).
+- **LivelyDesk website:** Static web portal deployed on Vercel without user accounts, analytics scripts, or tracking cookies. Browser `localStorage` stores only theme, language, and short-lived public release metadata cache, while `/api/releases` fetches public GitHub release metadata from `api.github.com`.
 
 ---
 

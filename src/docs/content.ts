@@ -94,7 +94,7 @@ export const docs: Record<'en' | 'id', DocContent> = {
           {
             "kind": "note",
             "title": "Unsigned applications",
-            "text": "The source READMEs describe unsigned releases. Windows may show an unknown-publisher or SmartScreen warning. Download from the official repositories and follow your organization's security policy. Keep antivirus and Windows protections enabled. Do not run as administrator to bypass desktop access errors."
+            "text": "Releases published prior to SignPath CI integration are unsigned; see the Code signing policy on the download page and upstream READMEs for current status. Windows may show an unknown-publisher or SmartScreen warning. Download from the official repositories and follow your organization's security policy. Keep antivirus and Windows protections enabled. Do not run as administrator to bypass desktop access errors."
           },
           {
             "kind": "p",
@@ -625,6 +625,22 @@ export const docs: Record<'en' | 'id', DocContent> = {
               {
                 "label": "TransparentBar source build instructions",
                 "url": "https://github.com/Raflyf/TransparentBar/blob/2ccb731a63a1079ad650690a02ab0aee8724b9b9/README.md"
+              },
+              {
+                "label": "WallpaperLive Code signing policy",
+                "url": "https://github.com/Raflyf/WallpaperLive#code-signing-policy"
+              },
+              {
+                "label": "WallpaperLive Privacy policy",
+                "url": "https://github.com/Raflyf/WallpaperLive#privacy-policy"
+              },
+              {
+                "label": "TransparentBar Code signing policy",
+                "url": "https://github.com/Raflyf/TransparentBar#code-signing-policy"
+              },
+              {
+                "label": "TransparentBar Privacy policy",
+                "url": "https://github.com/Raflyf/TransparentBar#privacy-policy"
               }
             ]
           }
@@ -703,7 +719,7 @@ export const docs: Record<'en' | 'id', DocContent> = {
           {
             "kind": "note",
             "title": "Aplikasi tanpa tanda tangan digital",
-            "text": "README sumber menjelaskan rilis yang belum ditandatangani. Windows dapat menampilkan peringatan penerbit tidak dikenal atau SmartScreen. Unduh dari repositori resmi dan ikuti kebijakan keamanan organisasi Anda. Biarkan antivirus serta perlindungan Windows aktif. Jangan jalankan sebagai administrator untuk melewati kesalahan akses desktop."
+            "text": "Rilis sebelum integrasi SignPath CI belum ditandatangani; lihat Code signing policy di halaman unduhan dan README sumber untuk status terbaru. Windows dapat menampilkan peringatan penerbit tidak dikenal atau SmartScreen. Unduh dari repositori resmi dan ikuti kebijakan keamanan organisasi Anda. Biarkan antivirus serta perlindungan Windows aktif. Jangan jalankan sebagai administrator untuk melewati kesalahan akses desktop."
           },
           {
             "kind": "p",
@@ -1234,6 +1250,22 @@ export const docs: Record<'en' | 'id', DocContent> = {
               {
                 "label": "Petunjuk build TransparentBar",
                 "url": "https://github.com/Raflyf/TransparentBar/blob/2ccb731a63a1079ad650690a02ab0aee8724b9b9/README.md"
+              },
+              {
+                "label": "WallpaperLive Code signing policy",
+                "url": "https://github.com/Raflyf/WallpaperLive#code-signing-policy"
+              },
+              {
+                "label": "WallpaperLive Privacy policy",
+                "url": "https://github.com/Raflyf/WallpaperLive#privacy-policy"
+              },
+              {
+                "label": "TransparentBar Code signing policy",
+                "url": "https://github.com/Raflyf/TransparentBar#code-signing-policy"
+              },
+              {
+                "label": "TransparentBar Privacy policy",
+                "url": "https://github.com/Raflyf/TransparentBar#privacy-policy"
               }
             ]
           }

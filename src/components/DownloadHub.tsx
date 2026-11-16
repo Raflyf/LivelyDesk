@@ -265,23 +265,23 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
             .
           </p>
           <p>{t.download.signingStatus}</p>
-          <ul className="space-y-1 font-mono text-[11px] text-fg/75">
+          <ul className="space-y-1 font-mono text-[11px] text-fg/80">
             <li>
               <strong className="text-fg">{t.download.signingAuthorsLabel}</strong> {t.download.signingRoleValue}
             </li>
             <li>
-              <strong className="text-fg">{t.download.signingReviewersLabel}</strong> {t.download.signingRoleValue}
+              <strong className="text-fg">{t.download.signingReviewersLabel}</strong> {t.download.signingRoleValue} ({t.download.signingReviewersNote})
             </li>
             <li>
-              <strong className="text-fg">{t.download.signingApproversLabel}</strong> {t.download.signingRoleValue}
+              <strong className="text-fg">{t.download.signingApproversLabel}</strong> {t.download.signingRoleValue} ({t.download.signingApproversNote})
             </li>
           </ul>
-          <div className="flex flex-wrap gap-4 pt-1 font-mono text-[11px]">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 sm:gap-y-2 pt-1 font-mono text-[11px]">
             <a
               href="https://github.com/Raflyf/WallpaperLive#code-signing-policy"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent-text underline underline-offset-2"
+              className="min-h-11 sm:min-h-0 inline-flex items-center text-accent-text underline underline-offset-2"
             >
               WallpaperLive policy
             </a>
@@ -289,7 +289,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
               href="https://github.com/Raflyf/TransparentBar#code-signing-policy"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent-text underline underline-offset-2"
+              className="min-h-11 sm:min-h-0 inline-flex items-center text-accent-text underline underline-offset-2"
             >
               TransparentBar policy
             </a>
@@ -312,12 +312,12 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
           <p>
             <strong className="text-fg">{t.download.privacyTbLabel}</strong> {t.download.privacyTbText}
           </p>
-          <div className="flex flex-wrap gap-4 pt-1 font-mono text-[11px]">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 sm:gap-y-2 pt-1 font-mono text-[11px]">
             <a
               href="https://github.com/Raflyf/WallpaperLive#privacy-policy"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent-text underline underline-offset-2"
+              className="min-h-11 sm:min-h-0 inline-flex items-center text-accent-text underline underline-offset-2"
             >
               WallpaperLive privacy
             </a>
@@ -325,7 +325,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
               href="https://github.com/Raflyf/TransparentBar#privacy-policy"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent-text underline underline-offset-2"
+              className="min-h-11 sm:min-h-0 inline-flex items-center text-accent-text underline underline-offset-2"
             >
               TransparentBar privacy
             </a>
