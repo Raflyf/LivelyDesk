@@ -40,9 +40,10 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
 
   const tabData = {
     desktop: {
-      image: 'https://raw.githubusercontent.com/Raflyf/WallpaperLive/main/assets/screenshots/preview-v0.1.5.png',
-      width: 1920,
-      height: 1080,
+      image: '/images/opt/preview-poster-v1.webp',
+      webpSrcSet: '/images/opt/preview-poster-v1.webp 640w',
+      width: 1600,
+      height: 900,
       alt: t.simulator.alts.desktop,
       title: t.simulator.captions.desktopTitle,
       desc: t.simulator.captions.desktopDesc,
@@ -51,6 +52,7 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
     },
     library: {
       image: 'https://raw.githubusercontent.com/Raflyf/WallpaperLive/main/assets/screenshots/cache-ready-v0.1.6.png',
+      webpSrcSet: '/images/opt/cache-ready-640-v1.webp 640w, /images/opt/cache-ready-1280-v1.webp 1280w',
       width: 1917,
       height: 883,
       alt: t.simulator.alts.library,
@@ -61,6 +63,7 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
     },
     taskbar: {
       image: 'https://raw.githubusercontent.com/Raflyf/TransparentBar/main/assets/desktop-preview.png',
+      webpSrcSet: '/images/opt/desktop-preview-640-v1.webp 640w, /images/opt/desktop-preview-1200-v1.webp 1200w',
       width: 1440,
       height: 1110,
       alt: t.simulator.alts.taskbar,
@@ -71,6 +74,7 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
     },
     telemetry: {
       image: '/images/resource-use-orange.png',
+      webpSrcSet: '/images/opt/resource-use-orange-640-v1.webp 640w, /images/opt/resource-use-orange-1280-v1.webp 1280w',
       width: 1600,
       height: 550,
       alt: t.simulator.alts.telemetry,
@@ -173,8 +177,8 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
             ref={videoRef}
             hidden={activeTab !== 'desktop'}
             src="/video/1109.mp4"
-            poster="https://raw.githubusercontent.com/Raflyf/WallpaperLive/main/assets/screenshots/preview-v0.1.5.png"
-            preload="metadata"
+            poster="/images/opt/preview-poster-v1.webp"
+            preload="none"
             loop
             muted
             playsInline
@@ -184,15 +188,18 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
             {t.simulator.videoUnsupported}
           </video>
           {activeTab !== 'desktop' && (
-            <img
-              key={current.image}
-              src={current.image}
-              alt={current.alt}
-              width={current.width}
-              height={current.height}
-              className="w-full h-full object-contain select-none motion-swap"
-              loading="lazy"
-            />
+            <picture key={current.image} className="w-full h-full block motion-swap">
+              <source type="image/webp" srcSet={current.webpSrcSet} sizes="(max-width: 768px) 92vw, 1080px" />
+              <img
+                src={current.image}
+                alt={current.alt}
+                width={current.width}
+                height={current.height}
+                className="w-full h-full object-contain select-none"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           )}
         </div>
 

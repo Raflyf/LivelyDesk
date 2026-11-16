@@ -66,9 +66,8 @@ export function renderDocumentation(lang: 'en' | 'id') {
     '<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />',
     '<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />',
     '<script id="theme-init">try{document.documentElement.dataset.theme=localStorage.getItem(\'theme\')===\'light\'?\'light\':\'dark\'}catch{document.documentElement.dataset.theme=\'dark\'}</script>',
-    '<link rel="preconnect" href="https://fonts.googleapis.com" />',
-    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />',
-    '<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />',
+    '<link rel="preload" as="font" type="font/woff2" href="/fonts/plus-jakarta-sans-latin-v1.woff2" crossorigin />',
+    '<link rel="preload" as="font" type="font/woff2" href="/fonts/bricolage-grotesque-latin-v1.woff2" crossorigin />',
   ].join('\n');
   const toc = (Object.entries(content.groups) as [DocGroup, string][]).map(([group, name]) =>
     '<div data-reveal class="docs-toc-group"><p class="docs-toc-title">' + escapeHtml(name) + '</p><ul>' + content.sections.filter(section => section.group === group).map(section => '<li><a href="#' + escapeHtml(section.id) + '">' + escapeHtml(section.title) + '</a></li>').join('') + '</ul></div>'
@@ -79,7 +78,7 @@ export function renderDocumentation(lang: 'en' | 'id') {
     renderSiteHeader(lang, {en:'/doc',id:'/doc/id'}) +
     '<div class="docs-layout"><aside class="docs-sidebar" data-lenis-prevent-wheel><details class="docs-contents" open><summary>' + labels.contents + '</summary><nav aria-label="' + labels.contents + '">' + toc + '</nav></details></aside>' +
     '<main id="docs-main" tabindex="-1" class="docs-main"><nav class="docs-breadcrumbs" aria-label="Breadcrumb"><a href="' + (id ? '/id' : '/') + '">' + labels.home + '</a><span aria-hidden="true">/</span><span aria-current="page">' + labels.docs + '</span></nav>' +
-    '<div data-reveal class="docs-intro hero-line"><h1>' + escapeHtml(content.title) + '</h1><p>' + escapeHtml(content.summary) + '</p><div class="docs-source-list"><span>' + labels.source + ':</span>' + docSources.map(source => externalLink(source.name + ' README', source.url)).join('') + '</div></div>' +
+    '<div class="docs-intro hero-line"><h1>' + escapeHtml(content.title) + '</h1><p>' + escapeHtml(content.summary) + '</p><div class="docs-source-list"><span>' + labels.source + ':</span>' + docSources.map(source => externalLink(source.name + ' README', source.url)).join('') + '</div></div>' +
     sections + '</main></div>' +
     renderSiteFooter(lang);
   return { head, body };

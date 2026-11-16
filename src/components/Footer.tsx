@@ -14,7 +14,7 @@ export const Footer: React.FC<FooterProps> = ({ t, lang }) => {
         
         {/* Brand */}
         <div className="flex items-center gap-3">
-          <img src="/favicon.svg" alt="LivelyDesk" width="32" height="32" className="h-8 w-8 shrink-0" />
+          <img src="/favicon.svg" alt="LivelyDesk" width="32" height="32" loading="lazy" decoding="async" className="h-8 w-8 shrink-0" />
           <div>
             <div className="font-display font-bold text-sm text-fg">
               WallpaperLive &amp; TransparentBar
