@@ -1,0 +1,170 @@
+export type Language = 'id' | 'en';
+
+export interface Translation {
+  nav: {
+    simulator: string;
+    features: string;
+    benchmark: string;
+    download: string;
+    support: string;
+    downloadBtn: string;
+    supportBtn: string;
+    docs: string;
+    skipToContent: string;
+    menuOpen: string;
+    menuClose: string;
+  };
+  hero: {
+    badge: string;
+    titlePart1: string;
+    titlePart2: string;
+    subtitle: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+    metaInfo: string;
+    stat1: string;
+    stat1Sub: string;
+    stat2: string;
+    stat2Sub: string;
+    stat3: string;
+    stat3Sub: string;
+  };
+  simulator: {
+    title: string;
+    subtitle: string;
+    tag: string;
+    sourceLink: string;
+    desktopTag: string;
+    desktopBadge: string;
+    videoUnsupported: string;
+    tabs: {
+      desktop: string;
+      library: string;
+      taskbar: string;
+      telemetry: string;
+    };
+    alts: {
+      desktop: string;
+      library: string;
+      taskbar: string;
+      telemetry: string;
+    };
+    captions: {
+      desktopTitle: string;
+      desktopDesc: string;
+      libraryTitle: string;
+      libraryDesc: string;
+      taskbarTitle: string;
+      taskbarDesc: string;
+      telemetryTitle: string;
+      telemetryDesc: string;
+    };
+  };
+  features: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    items: {
+      f1Title: string;
+      f1Desc: string;
+      f2Title: string;
+      f2Desc: string;
+      f3Title: string;
+      f3Desc: string;
+      f4Title: string;
+      f4Desc: string;
+      f5Title: string;
+      f5Desc: string;
+      f6Title: string;
+      f6Desc: string;
+    };
+  };
+  benchmark: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    stateCol: string;
+    ramCol: string;
+    cpuCol: string;
+    notesCol: string;
+    row1State: string;
+    row1Ram: string;
+    row1Cpu: string;
+    row1Notes: string;
+    row2State: string;
+    row2Ram: string;
+    row2Cpu: string;
+    row2Notes: string;
+    row3State: string;
+    row3Ram: string;
+    row3Cpu: string;
+    row3Notes: string;
+    row4State: string;
+    row4Ram: string;
+    row4Cpu: string;
+    row4Notes: string;
+    tbRowState: string;
+    tbRowRam: string;
+    tbRowCpu: string;
+    tbRowNotes: string;
+    disclaimer: string;
+    contextTitle: string;
+  };
+  download: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    wpTitle: string;
+    wpDesc: string;
+    wpIconAlt: string;
+    wpChecklist: string[];
+    tbTitle: string;
+    tbDesc: string;
+    tbIconAlt: string;
+    tbStartup: string;
+    tbCompatibility: string;
+    installerBtn: string;
+    portableBtn: string;
+    sourceBtn: string;
+    requirements: string;
+    checksumNote: string;
+    downloadsSoFar: string;
+    latest: string;
+    latestRelease: string;
+    version: string;
+    about: string;
+    releaseLoading: string;
+    releaseUnavailable: string;
+    downloadsUnavailable: string;
+    seeGithub: string;
+  };
+  support: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    desc: string;
+    yappDesc: string;
+    saweriaDesc: string;
+    yappBtn: string;
+    saweriaBtn: string;
+    guarantee: string;
+  };
+  faq: {
+    badge: string;
+    title: string;
+    q1: string;
+    a1: string;
+    q2: string;
+    a2: string;
+    q3: string;
+    a3: string;
+    q4: string;
+    a4: string;
+  };
+  footer: {
+    rights: string;
+    byDeveloper: string;
+    licensedUnder: string;
+    openSourcePromise: string;
+  };
+}

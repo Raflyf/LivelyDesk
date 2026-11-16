@@ -2,6 +2,7 @@ import { defineConfig, type Connect } from 'vite';
 import { createElement } from 'react';
 import { renderToString } from 'react-dom/server';
 import App from './src/App';
+import { translations } from './src/types/content';
 import { renderHomeMetadata } from './src/seo';
 import { renderProductPage } from './src/products/render';
 import { resolve } from 'node:path';
@@ -49,7 +50,7 @@ export default defineConfig({
         handler(html, context) {
           const lang = html.includes('<html lang="id"') ? 'id' : 'en';
           if (html.includes('<!--HOME_BODY-->')) {
-            const body = renderToString(createElement(App, { initialLang: lang }));
+            const body = renderToString(createElement(App, { initialLang: lang, t: translations[lang] }));
             return html.replace('<!--HOME_SEO-->', () => renderHomeMetadata(lang)).replace('<!--HOME_BODY-->', () => body);
           }
           if (html.includes('<!--PRODUCT_BODY-->')) {
@@ -62,6 +63,22 @@ export default defineConfig({
             return html.replace('<!--DOC_HEAD-->', () => page.head).replace('<!--DOC_BODY-->', () => page.body);
           }
           return html;
+        },
+      },
+    },
+    {
+      name: 'inline-built-css',
+      transformIndexHtml: {
+        order: 'post',
+        handler(html, context) {
+          const bundle = context.bundle;
+          if (!bundle) return html;
+          return html.replace(/<link rel="stylesheet"[^>]*href="\/(assets\/[^"]+\.css)"[^>]*>/g, (tag, assetPath: string) => {
+            const asset = bundle[assetPath];
+            if (!asset || asset.type !== 'asset') return tag;
+            const css = typeof asset.source === 'string' ? asset.source : new TextDecoder().decode(asset.source);
+            return `<style>${css.replace(/<\/style/gi, '<\\/style')}</style>`;
+          });
         },
       },
     },

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Language, translations } from './types/content';
+import type { Language, Translation } from './types/content';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { DesktopSimulator } from './components/DesktopSimulator';
@@ -13,7 +13,7 @@ import { emptyRelease, loadRelease, type ProductReleases, type ProductRepo } fro
 import { setupMotion } from './motion';
 import { setupSmoothScroll, scrollToSection } from './utils/scroll';
 
-export default function App({ initialLang = 'en' }: { initialLang?: Language }): React.JSX.Element {
+export default function App({ initialLang = 'en', t }: { initialLang?: Language; t: Translation }): React.JSX.Element {
   const lang = initialLang;
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [themeReady, setThemeReady] = useState(false);
@@ -25,7 +25,6 @@ export default function App({ initialLang = 'en' }: { initialLang?: Language }):
   const [releases, setReleases] = useState<ProductReleases>({
     WallpaperLive: emptyRelease, TransparentBar: emptyRelease,
   });
-  const t = translations[lang];
 
   useEffect(setupSmoothScroll, []);
   useEffect(setupMotion, []);

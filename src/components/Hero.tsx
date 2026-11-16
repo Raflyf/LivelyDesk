@@ -17,7 +17,7 @@ export const Hero: React.FC<HeroProps> = ({ t, releases }) => {
     <section className="relative pt-12 pb-16 md:pt-20 md:pb-24 px-4 sm:px-6 max-w-6xl mx-auto">
 
       {/* Top Tag */}
-      <div data-reveal className="flex justify-center mb-6">
+      <div className="flex justify-center mb-6">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-fg/5 border border-fg/10 text-xs font-mono text-fg/80 shadow-xs">
           <span className="w-2 h-2 rounded-full bg-burnt"></span>
           <span>{t.hero.badge}</span>
@@ -27,18 +27,18 @@ export const Hero: React.FC<HeroProps> = ({ t, releases }) => {
       {/* Main Editorial Headline */}
       <div className="text-center max-w-3xl mx-auto space-y-6">
         <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-fg leading-[1.08]">
-          <span data-reveal className="hero-line block">{t.hero.titlePart1}</span>
-          <span data-reveal className="hero-line block text-burnt italic font-normal underline decoration-burnt/30 decoration-wavy decoration-2">
+          <span className="hero-line block">{t.hero.titlePart1}</span>
+          <span className="hero-line block text-burnt italic font-normal underline decoration-burnt/30 decoration-wavy decoration-2">
             {t.hero.titlePart2}
           </span>
         </h1>
 
-        <p data-reveal className="text-base sm:text-lg md:text-xl text-fg/75 leading-relaxed max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg md:text-xl text-fg/75 leading-relaxed max-w-2xl mx-auto">
           {t.hero.subtitle}
         </p>
 
         {/* CTA Buttons */}
-        <div data-reveal className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3.5">
+        <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3.5">
           <button
             type="button"
             onClick={scrollToSection('download')}
@@ -59,7 +59,7 @@ export const Hero: React.FC<HeroProps> = ({ t, releases }) => {
           </button>
         </div>
 
-        <p data-reveal className="text-xs font-mono text-fg/70 pt-1">
+        <p className="text-xs font-mono text-fg/70 pt-1">
           WallpaperLive {releases.WallpaperLive.version ?? '…'} · TransparentBar {releases.TransparentBar.version ?? '…'} · {t.hero.metaInfo}
           {(anyLoading || anyUnavailable) && (
             <span className="block mt-1">
@@ -92,7 +92,7 @@ export const Hero: React.FC<HeroProps> = ({ t, releases }) => {
 
       {/* 3 Value Metric Cards */}
       <div className="motion-sequence grid grid-cols-1 md:grid-cols-3 gap-4 mt-14 pt-8 border-t border-fg/10">
-        <div data-reveal className="motion-card bg-surface p-5 rounded-2xl border border-fg/10 flex items-start gap-3.5">
+        <div className="motion-card bg-surface p-5 rounded-2xl border border-fg/10 flex items-start gap-3.5">
           <div className="p-2.5 rounded-xl bg-fg/5 text-accent-text">
             <Zap className="w-5 h-5" aria-hidden="true" />
           </div>
@@ -106,7 +106,7 @@ export const Hero: React.FC<HeroProps> = ({ t, releases }) => {
           </div>
         </div>
 
-        <div data-reveal className="motion-card bg-surface p-5 rounded-2xl border border-fg/10 flex items-start gap-3.5">
+        <div className="motion-card bg-surface p-5 rounded-2xl border border-fg/10 flex items-start gap-3.5">
           <div className="p-2.5 rounded-xl bg-fg/5 text-accent-text">
             <Sparkles className="w-5 h-5" aria-hidden="true" />
           </div>
@@ -120,7 +120,7 @@ export const Hero: React.FC<HeroProps> = ({ t, releases }) => {
           </div>
         </div>
 
-        <div data-reveal className="motion-card bg-surface p-5 rounded-2xl border border-fg/10 flex items-start gap-3.5">
+        <div className="motion-card bg-surface p-5 rounded-2xl border border-fg/10 flex items-start gap-3.5">
           <div className="p-2.5 rounded-xl bg-fg/5 text-accent-text">
             <ShieldCheck className="w-5 h-5" aria-hidden="true" />
           </div>
