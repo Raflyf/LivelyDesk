@@ -34,7 +34,7 @@ export const FAQ: React.FC<FAQProps> = ({ t }) => {
           <div
             key={idx}
             data-reveal
-            className="bg-surface rounded-2xl border border-fg/8 overflow-hidden transition-all shadow-xs"
+            className="bg-surface rounded-2xl border border-fg/8 overflow-hidden transition-colors shadow-xs"
           >
             <button
               type="button"

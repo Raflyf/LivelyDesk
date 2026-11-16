@@ -49,6 +49,10 @@ body {
   overflow-x: hidden;
 }
 
+main section[id] {
+  scroll-margin-top: 5rem;
+}
+
 h1, h2, h3, .font-display {
   font-family: var(--font-display);
 }
@@ -121,11 +125,11 @@ h1, h2, h3, .font-display {
 
 .motion-card:focus-within { border-color: var(--color-burnt); }
 
-.motion-button, :where(button, a[href]) {
-  transition: translate var(--motion-fast) var(--motion-ease), scale var(--motion-fast) var(--motion-ease), background-color var(--motion-fast), color var(--motion-fast), box-shadow var(--motion-fast);
+.motion-button {
+  transition: translate var(--motion-fast) var(--motion-ease), scale var(--motion-fast) var(--motion-ease), background-color var(--motion-fast), color var(--motion-fast), border-color var(--motion-fast), box-shadow var(--motion-fast);
 }
 
-.motion-button:active, :where(button, a[href]):active { scale: .97; }
+.motion-button:active { scale: .97; }
 
 .motion-button svg, .product-icon {
   transition: translate 260ms var(--motion-ease), scale 260ms var(--motion-ease);
@@ -151,8 +155,17 @@ header nav button:is(:hover, :focus-visible)::after { scale: 1; }
     box-shadow: 0 14px 28px color-mix(in srgb, var(--color-ink) 22%, transparent);
   }
   .motion-card:hover .product-icon { scale: 1.04; }
-  .motion-button:hover, :where(button, a[href]):hover { translate: 0 -2px; }
+  .motion-button:hover { translate: 0 -2px; }
   .motion-button:hover svg:last-child { translate: 2px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal].is-revealed {
+    --reveal-distance: 0px;
+    animation-duration: 180ms;
+  }
+  .motion-card:hover, .motion-button:hover { translate: none; }
+  .motion-button:active { scale: 1; }
 }
 
 .faq-answer {
@@ -189,9 +202,8 @@ header nav button:is(:hover, :focus-visible)::after { scale: 1; }
   box-shadow: 0 12px 28px color-mix(in srgb, var(--color-ink) 14%, transparent);
 }
 
-.support-platform:focus-visible { outline-offset: 5px; }
-.support-platform-yapp { outline-color: var(--color-burnt); }
-.support-platform-saweria { outline-color: var(--color-cream); }
+.support-platform-yapp :focus-visible { outline-color: var(--color-ink); }
+.support-platform-saweria :focus-visible { outline-color: var(--color-cream); }
 
 .support-card-art {
   position: absolute;

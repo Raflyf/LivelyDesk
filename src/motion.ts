@@ -75,9 +75,15 @@ export function setupVideoVisibility(video: HTMLVideoElement) {
     }, { threshold: [0, 0.25] });
     observer.observe(video);
   }
+  let attrObserver: MutationObserver | undefined;
+  if (typeof MutationObserver !== 'undefined' && typeof Node !== 'undefined' && video instanceof Node) {
+    attrObserver = new MutationObserver(sync);
+    attrObserver.observe(video, { attributes: true, attributeFilter: ['hidden'] });
+  }
   sync();
   return () => {
     observer?.disconnect();
+    attrObserver?.disconnect();
     document.removeEventListener('visibilitychange', sync);
     window.removeEventListener('focus', onFocus);
     window.removeEventListener('blur', onBlur);

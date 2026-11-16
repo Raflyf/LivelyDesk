@@ -53,8 +53,9 @@ document.addEventListener('click', event => {
   event.preventDefault();
   if (contents?.contains(link) && !desktop.matches) contents.open = false;
   if (event.detail === 0) {
-    if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
-    target.focus({ preventScroll: true });
+    const focusTarget = (typeof target.querySelector === 'function' ? target.querySelector<HTMLElement>('h1, h2, h3') : null) ?? target;
+    if (!focusTarget.hasAttribute('tabindex')) focusTarget.setAttribute('tabindex', '-1');
+    focusTarget.focus({ preventScroll: true });
   }
   scrollToSection(id, true)();
   if (window.location.hash !== link.hash) {

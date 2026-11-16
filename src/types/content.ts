@@ -10,6 +10,9 @@ export interface Translation {
     downloadBtn: string;
     supportBtn: string;
     docs: string;
+    skipToContent: string;
+    menuOpen: string;
+    menuClose: string;
   };
   hero: {
     badge: string;
@@ -30,7 +33,17 @@ export interface Translation {
     title: string;
     subtitle: string;
     tag: string;
+    sourceLink: string;
+    desktopTag: string;
+    desktopBadge: string;
+    videoUnsupported: string;
     tabs: {
+      desktop: string;
+      library: string;
+      taskbar: string;
+      telemetry: string;
+    };
+    alts: {
       desktop: string;
       library: string;
       taskbar: string;
@@ -103,8 +116,11 @@ export interface Translation {
     subtitle: string;
     wpTitle: string;
     wpDesc: string;
+    wpIconAlt: string;
+    wpChecklist: string[];
     tbTitle: string;
     tbDesc: string;
+    tbIconAlt: string;
     tbStartup: string;
     tbCompatibility: string;
     installerBtn: string;
@@ -120,6 +136,7 @@ export interface Translation {
     releaseLoading: string;
     releaseUnavailable: string;
     downloadsUnavailable: string;
+    seeGithub: string;
   };
   support: {
     badge: string;
@@ -163,6 +180,9 @@ export const translations: Record<Language, Translation> = {
       downloadBtn: "Unduh Suite",
       supportBtn: "Dukung",
       docs: "Dokumentasi",
+      skipToContent: "Langsung ke konten utama",
+      menuOpen: "Buka menu navigasi",
+      menuClose: "Tutup menu navigasi",
     },
     hero: {
       badge: "LivelyDesk · Windows 10 & 11 · 64-bit · Native Rust",
@@ -183,11 +203,21 @@ export const translations: Record<Language, Translation> = {
       title: "Tampilan Aplikasi di Windows 11",
       subtitle: "Video desktop dan tangkapan layar WallpaperLive serta TransparentBar di Windows 11.",
       tag: "Tangkapan Layar Resmi (Windows 11)",
+      sourceLink: "Sumber Resmi GitHub",
+      desktopTag: "Windows 11 x64 · Pemutaran Langsung (Video Asli)",
+      desktopBadge: "Dokumentasi v0.1.5 Asli",
+      videoUnsupported: "Browser Anda tidak mendukung tag video.",
       tabs: {
         desktop: "Desktop & Taskbar Transparan",
         library: "Panel Kontrol & Library 3x3",
         taskbar: "Detail TransparentBar",
         telemetry: "Task Manager",
+      },
+      alts: {
+        desktop: "WallpaperLive memutar video langsung di Windows 11 dengan taskbar transparan dan Task Manager",
+        library: "Library thumbnail 3x3 native WallpaperLive dan kontrol penempatan",
+        taskbar: "TransparentBar di desktop Windows 11 dengan detail taskbar yang diperbesar",
+        telemetry: "Cuplikan Task Manager v0.1.5 asli: wallpaperlive.exe memakai 20.3 MB dan 0.5 persen CPU di tray, serta 4.5 MB dan 0 persen CPU saat auto-pause",
       },
       captions: {
         desktopTitle: "Wallpaper Aktif dengan Taskbar Tembus Pandang",
@@ -256,8 +286,15 @@ export const translations: Record<Language, Translation> = {
       subtitle: "Instalasi per pengguna tanpa hak administrator. Installer dan kode sumber tersedia di GitHub.",
       wpTitle: "WallpaperLive",
       wpDesc: "Engine wallpaper video & GIF dengan akselerasi libmpv hardware decoding dan cache lokal.",
+      wpIconAlt: "Logo WallpaperLive",
+      wpChecklist: [
+        "Pemutar video (MP4, WebM), GIF, dan JPG/PNG",
+        "Library thumbnail 3x3 dengan cache instan",
+        "Auto-pause saat aplikasi fullscreen berjalan",
+      ],
       tbTitle: "TransparentBar",
       tbDesc: "Taskbar transparan berbasis Rust dengan menu tray, konektor jendela, dan notifikasi rilis baru dari GitHub.",
+      tbIconAlt: "Logo TransparentBar",
       tbStartup: "Startup saat sign-in opsional, mati secara default",
       tbCompatibility: "Windows 10/11 x64; ARM64 tidak didukung. Konektor mendukung taskbar bawah pada monitor utama dan sekunder dengan auto-hide dimatikan. Untuk versi portable, simpan EXE dan DLL bridge bersama.",
       installerBtn: "Unduh Installer (.exe)",
@@ -273,6 +310,7 @@ export const translations: Record<Language, Translation> = {
       releaseLoading: "Memuat rilis terbaru…",
       releaseUnavailable: "Info rilis tidak tersedia. Lihat GitHub.",
       downloadsUnavailable: "Jumlah unduhan tidak tersedia",
+      seeGithub: "Lihat GitHub",
     },
     support: {
       badge: "Dukung Pengembang",
@@ -314,6 +352,9 @@ export const translations: Record<Language, Translation> = {
       downloadBtn: "Download Suite",
       supportBtn: "Support",
       docs: "Documentation",
+      skipToContent: "Skip to main content",
+      menuOpen: "Open navigation menu",
+      menuClose: "Close navigation menu",
     },
     hero: {
       badge: "LivelyDesk · Windows 10 & 11 · 64-bit · Native Rust",
@@ -334,11 +375,21 @@ export const translations: Record<Language, Translation> = {
       title: "The Apps on Windows 11",
       subtitle: "Desktop video and screenshots of WallpaperLive and TransparentBar on Windows 11.",
       tag: "Official Windows 11 Captures",
+      sourceLink: "Official GitHub Source",
+      desktopTag: "Windows 11 x64 · Live Playback (Real Video)",
+      desktopBadge: "Original v0.1.5 Capture",
+      videoUnsupported: "Your browser does not support the video tag.",
       tabs: {
         desktop: "Live Desktop & Transparent Taskbar",
         library: "Control Panel & 3x3 Library",
         taskbar: "TransparentBar Detail",
         telemetry: "Task Manager",
+      },
+      alts: {
+        desktop: "WallpaperLive playing live video on Windows 11 with transparent taskbar and Task Manager",
+        library: "WallpaperLive native 3x3 thumbnail library and placement controls",
+        taskbar: "TransparentBar on Windows 11 desktop with enlarged taskbar detail",
+        telemetry: "Original v0.1.5 Task Manager captures: wallpaperlive.exe at 20.3 MB and 0.5 percent CPU in tray, and 4.5 MB and 0 percent CPU while auto-paused",
       },
       captions: {
         desktopTitle: "Active Live Wallpaper & Transparent Taskbar",
@@ -407,8 +458,15 @@ export const translations: Record<Language, Translation> = {
       subtitle: "Per-user installation without administrator privileges. Installers and source code are available on GitHub.",
       wpTitle: "WallpaperLive",
       wpDesc: "High-performance video & GIF live wallpaper engine with libmpv hardware decode and local cache.",
+      wpIconAlt: "WallpaperLive logo",
+      wpChecklist: [
+        "Video player (MP4, WebM), GIF, and JPG/PNG",
+        "3x3 Thumbnail library with instant cache",
+        "Auto pause on fullscreen applications",
+      ],
       tbTitle: "TransparentBar",
       tbDesc: "Native Rust taskbar transparency with tray controls, a window connector, and GitHub release update notifications.",
+      tbIconAlt: "TransparentBar logo",
       tbStartup: "Optional startup at sign-in, off by default",
       tbCompatibility: "Windows 10/11 x64; ARM64 is not supported. The connector supports primary and secondary bottom-docked taskbars with auto-hide off. Keep the portable EXE and bridge DLL together.",
       installerBtn: "Download Installer (.exe)",
@@ -424,6 +482,7 @@ export const translations: Record<Language, Translation> = {
       releaseLoading: "Loading latest releases…",
       releaseUnavailable: "Release info unavailable. See GitHub.",
       downloadsUnavailable: "Download count unavailable",
+      seeGithub: "See GitHub",
     },
     support: {
       badge: "Support Independent Dev",

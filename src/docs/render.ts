@@ -1,4 +1,5 @@
 import { docs, docSources, type DocBlock, type DocGroup } from './content.ts';
+import { renderPageMetadata, siteOrigin } from '../seo.ts';
 
 export const escapeHtml = (value: string) => value.replace(/[&<>"']/g, char => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -28,8 +29,8 @@ export function renderSiteHeader(lang: 'en' | 'id', paths: Record<'en' | 'id', s
   const labels = id
     ? {home:'Beranda',docs:'Navigasi',language:'Bahasa',theme:'Mode gelap',download:'Unduh'}
     : {home:'Home',docs:'Navigation',language:'Language',theme:'Dark mode',download:'Download'};
-  return '<header class="docs-topbar"><div data-reveal class="docs-topbar-inner"><a href="' + home + '" class="docs-brand" aria-label="LivelyDesk: ' + labels.home + '"><img src="/favicon.svg" alt="" width="36" height="36" /><span>LivelyDesk</span></a>' +
-    '<nav class="docs-controls" aria-label="' + labels.docs + '"><a href="' + home + '">' + labels.home + '</a><div class="docs-language" role="group" aria-label="' + labels.language + '">' +
+  return '<header class="docs-topbar"><div class="docs-topbar-inner"><a href="' + home + '" class="docs-brand" aria-label="LivelyDesk: ' + labels.home + '"><img src="/favicon.svg" alt="" width="36" height="36" /><span>LivelyDesk</span></a>' +
+    '<nav class="docs-controls" aria-label="' + labels.docs + '"><a class="docs-home-link" href="' + home + '">' + labels.home + '</a><div class="docs-language" role="group" aria-label="' + labels.language + '">' +
     '<a href="' + paths.id + '" hreflang="id" lang="id" data-docs-language' + (id ? ' aria-current="page"' : '') + '>ID</a>' +
     '<a href="' + paths.en + '" hreflang="en" lang="en" data-docs-language' + (!id ? ' aria-current="page"' : '') + '>EN</a></div>' +
     '<button type="button" role="switch" aria-checked="true" aria-label="' + labels.theme + '" data-docs-theme disabled>' +
@@ -47,41 +48,24 @@ export function renderSiteFooter(lang: 'en' | 'id') {
 export function renderDocumentation(lang: 'en' | 'id') {
   const content = docs[lang];
   const id = lang === 'id';
-  const origin = 'https://livelydesk.vercel.app';
-  const canonical = origin + (id ? '/doc/id' : '/doc');
+  const paths = { en: '/doc', id: '/doc/id' };
+  const canonical = siteOrigin + paths[lang];
   const labels = id
     ? { home: 'Beranda', docs: 'Dokumentasi', contents: 'Daftar isi', skip: 'Langsung ke panduan', language: 'Bahasa', theme: 'Mode gelap', download: 'Unduh', source: 'Sumber panduan', section: 'Tautan ke', support: 'Dukung pengembangan' }
     : { home: 'Home', docs: 'Documentation', contents: 'On this page', skip: 'Skip to the guide', language: 'Language', theme: 'Dark mode', download: 'Download', source: 'Guide sources', section: 'Link to', support: 'Support development' };
   const title = labels.docs + ' | LivelyDesk';
-  const structuredData = JSON.stringify({
+  const schema = {
     '@context': 'https://schema.org', '@type': 'TechArticle', headline: content.title,
     description: content.summary, inLanguage: lang, url: canonical,
-    isPartOf: { '@type': 'WebSite', name: 'LivelyDesk', url: origin + '/' },
+    isPartOf: { '@type': 'WebSite', name: 'LivelyDesk', url: siteOrigin + '/' },
     citation: docSources.map(source => source.url),
-  }).replace(/</g, '\\u003c');
+  };
   const head = [
-    '<title>' + escapeHtml(title) + '</title>',
-    '<meta name="description" content="' + escapeHtml(content.summary) + '" />',
-    '<meta name="robots" content="index, follow" />',
-    '<link rel="canonical" href="' + canonical + '" />',
-    '<link rel="alternate" hreflang="en" href="' + origin + '/doc" />',
-    '<link rel="alternate" hreflang="id" href="' + origin + '/doc/id" />',
-    '<link rel="alternate" hreflang="x-default" href="' + origin + '/doc" />',
+    renderPageMetadata({ title, description: content.summary, lang, paths, schema, ogType: 'article' }),
     '<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48 64x64" />',
     '<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />',
     '<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />',
-    '<meta property="og:type" content="article" />',
-    '<meta property="og:site_name" content="LivelyDesk" />',
-    '<meta property="og:title" content="' + escapeHtml(title) + '" />',
-    '<meta property="og:description" content="' + escapeHtml(content.summary) + '" />',
-    '<meta property="og:url" content="' + canonical + '" />',
-    '<meta property="og:image" content="' + origin + '/icons/livelydesk.png" />',
-    '<meta name="twitter:card" content="summary" />',
-    '<meta name="twitter:title" content="' + escapeHtml(title) + '" />',
-    '<meta name="twitter:description" content="' + escapeHtml(content.summary) + '" />',
-    '<meta name="twitter:image" content="' + origin + '/icons/livelydesk.png" />',
-    '<script type="application/ld+json">' + structuredData + '</script>',
-    '<script>try{document.documentElement.dataset.theme=localStorage.getItem("theme")==="light"?"light":"dark"}catch{document.documentElement.dataset.theme="dark"}</script>',
+    '<script id="theme-init">try{document.documentElement.dataset.theme=localStorage.getItem(\'theme\')===\'light\'?\'light\':\'dark\'}catch{document.documentElement.dataset.theme=\'dark\'}</script>',
     '<link rel="preconnect" href="https://fonts.googleapis.com" />',
     '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />',
     '<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />',

@@ -58,15 +58,38 @@ export default function App({ initialLang = 'en' }: { initialLang?: Language }):
   // Clean any #hash from address bar on mount while preserving scroll target
   useEffect(() => {
     if (window.location.hash) {
-      const id = window.location.hash.slice(1);
+      let id = window.location.hash.slice(1);
+      try { id = decodeURIComponent(id); } catch { /* Keep raw id when malformed. */ }
       window.history.replaceState(null, '', window.location.pathname + window.location.search);
-      const timer = window.setTimeout(() => scrollToSection(id)(), 100);
-      return () => window.clearTimeout(timer);
+      let cancelled = false;
+      let frame = 0;
+      const runScroll = () => {
+        if (cancelled) return;
+        frame = window.requestAnimationFrame(() => {
+          if (!cancelled) scrollToSection(id)();
+        });
+      };
+      const fontsReady = document.fonts?.ready;
+      if (fontsReady) {
+        fontsReady.then(runScroll, runScroll);
+      } else {
+        runScroll();
+      }
+      return () => {
+        cancelled = true;
+        if (frame) window.cancelAnimationFrame(frame);
+      };
     }
   }, []);
 
   return (
     <div id="top" className="min-h-screen bg-canvas text-fg flex flex-col font-sans selection:bg-burnt selection:text-ink">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-4 focus:z-[60] focus:px-4 focus:py-2.5 focus:rounded-lg focus:bg-inverse focus:text-on-inverse focus:text-sm focus:font-semibold focus:shadow-lg"
+      >
+        {t.nav.skipToContent}
+      </a>
       <Navbar
         t={t}
         lang={lang}
@@ -76,7 +99,7 @@ export default function App({ initialLang = 'en' }: { initialLang?: Language }):
           try { localStorage.setItem('lang', l); } catch { /* Keep the choice in this tab. */ }
         }}
       />
-      <main className="flex-1">
+      <main id="main" tabIndex={-1} className="flex-1">
         <Hero t={t} releases={releases} />
         <DesktopSimulator t={t} />
         <Features t={t} />
