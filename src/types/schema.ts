@@ -137,6 +137,21 @@ export interface Translation {
     releaseUnavailable: string;
     downloadsUnavailable: string;
     seeGithub: string;
+    signingTitle: string;
+    signingNoticePrefix: string;
+    signingNoticeMiddle: string;
+    signingStatus: string;
+    signingRolesTitle: string;
+    signingAuthorsLabel: string;
+    signingReviewersLabel: string;
+    signingApproversLabel: string;
+    signingRoleValue: string;
+    privacyTitle: string;
+    privacyIntro: string;
+    privacyWpLabel: string;
+    privacyWpText: string;
+    privacyTbLabel: string;
+    privacyTbText: string;
   };
   support: {
     badge: string;

@@ -42,7 +42,8 @@ export function renderSiteHeader(lang: 'en' | 'id', paths: Record<'en' | 'id', s
 export function renderSiteFooter(lang: 'en' | 'id') {
   const id = lang === 'id';
   const suffix = id ? '/id' : '';
-  return '<footer class="docs-footer"><div data-reveal><span>LivelyDesk</span><a href="/wallpaperlive' + suffix + '">WallpaperLive</a><a href="/transparentbar' + suffix + '">TransparentBar</a><a href="/doc' + suffix + '">' + (id ? 'Panduan' : 'User guide') + '</a><a href="' + (id ? '/id' : '/') + '#support">' + (id ? 'Dukung pengembangan' : 'Support development') + '</a><a href="#docs-main">' + (id ? 'Kembali ke atas' : 'Back to top') + '</a></div></footer>';
+  const home = id ? '/id' : '/';
+  return '<footer class="docs-footer"><div data-reveal><span>LivelyDesk</span><a href="/wallpaperlive' + suffix + '">WallpaperLive</a><a href="/transparentbar' + suffix + '">TransparentBar</a><a href="/doc' + suffix + '">' + (id ? 'Panduan' : 'User guide') + '</a><a href="' + home + '#code-signing-policy">Code signing policy</a><a href="' + home + '#privacy-policy">Privacy policy</a><a href="' + home + '#support">' + (id ? 'Dukung pengembangan' : 'Support development') + '</a><a href="#docs-main">' + (id ? 'Kembali ke atas' : 'Back to top') + '</a></div></footer>';
 }
 
 export function renderDocumentation(lang: 'en' | 'id') {

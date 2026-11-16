@@ -30,6 +30,12 @@ export const Footer: React.FC<FooterProps> = ({ t, lang }) => {
           <a href={lang === 'id' ? '/doc/id' : '/doc'} className="min-h-11 sm:min-h-0 inline-flex items-center hover:text-accent-text transition-colors">
             {t.nav.docs}
           </a>
+          <a href={`${lang === 'id' ? '/id' : '/'}#code-signing-policy`} className="min-h-11 sm:min-h-0 inline-flex items-center hover:text-accent-text transition-colors">
+            Code signing policy
+          </a>
+          <a href={`${lang === 'id' ? '/id' : '/'}#privacy-policy`} className="min-h-11 sm:min-h-0 inline-flex items-center hover:text-accent-text transition-colors">
+            Privacy policy
+          </a>
           <a
             href="https://github.com/Raflyf/WallpaperLive"
             target="_blank"

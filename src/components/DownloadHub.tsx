@@ -1,7 +1,7 @@
 import React from 'react';
 import { Translation, type Language } from '../types/content';
 import type { ProductReleases } from '../releases';
-import { Download, Github, Monitor, Terminal, ExternalLink, Package } from 'lucide-react';
+import { Download, Github, Monitor, Terminal, ExternalLink, Package, ShieldCheck, Lock } from 'lucide-react';
 
 interface DownloadHubProps {
   t: Translation;
@@ -240,6 +240,97 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
           <Terminal className="w-4 h-4 shrink-0" aria-hidden="true" />
           <span>{t.download.checksumNote}</span>
         </div>
+      </div>
+
+      {/* Code Signing Policy & Privacy Policy */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <article
+          id="code-signing-policy"
+          data-reveal
+          className="scroll-mt-24 bg-surface p-6 rounded-2xl border border-fg/10 text-xs leading-relaxed text-fg/80 space-y-3"
+        >
+          <div className="flex items-center gap-2 font-display font-bold text-base text-fg">
+            <ShieldCheck className="w-4 h-4 text-accent-text shrink-0" aria-hidden="true" />
+            <h3>{t.download.signingTitle}</h3>
+          </div>
+          <p className="text-fg font-medium">
+            {t.download.signingNoticePrefix}
+            <a href="https://signpath.io/" target="_blank" rel="noopener noreferrer" className="text-accent-text underline underline-offset-2">
+              SignPath.io
+            </a>
+            {t.download.signingNoticeMiddle}
+            <a href="https://signpath.org/" target="_blank" rel="noopener noreferrer" className="text-accent-text underline underline-offset-2">
+              SignPath Foundation
+            </a>
+            .
+          </p>
+          <p>{t.download.signingStatus}</p>
+          <ul className="space-y-1 font-mono text-[11px] text-fg/75">
+            <li>
+              <strong className="text-fg">{t.download.signingAuthorsLabel}</strong> {t.download.signingRoleValue}
+            </li>
+            <li>
+              <strong className="text-fg">{t.download.signingReviewersLabel}</strong> {t.download.signingRoleValue}
+            </li>
+            <li>
+              <strong className="text-fg">{t.download.signingApproversLabel}</strong> {t.download.signingRoleValue}
+            </li>
+          </ul>
+          <div className="flex flex-wrap gap-4 pt-1 font-mono text-[11px]">
+            <a
+              href="https://github.com/Raflyf/WallpaperLive#code-signing-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent-text underline underline-offset-2"
+            >
+              WallpaperLive policy
+            </a>
+            <a
+              href="https://github.com/Raflyf/TransparentBar#code-signing-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent-text underline underline-offset-2"
+            >
+              TransparentBar policy
+            </a>
+          </div>
+        </article>
+
+        <article
+          id="privacy-policy"
+          data-reveal
+          className="scroll-mt-24 bg-surface p-6 rounded-2xl border border-fg/10 text-xs leading-relaxed text-fg/80 space-y-3"
+        >
+          <div className="flex items-center gap-2 font-display font-bold text-base text-fg">
+            <Lock className="w-4 h-4 text-accent-text shrink-0" aria-hidden="true" />
+            <h3>{t.download.privacyTitle}</h3>
+          </div>
+          <p className="text-fg font-medium">{t.download.privacyIntro}</p>
+          <p>
+            <strong className="text-fg">{t.download.privacyWpLabel}</strong> {t.download.privacyWpText}
+          </p>
+          <p>
+            <strong className="text-fg">{t.download.privacyTbLabel}</strong> {t.download.privacyTbText}
+          </p>
+          <div className="flex flex-wrap gap-4 pt-1 font-mono text-[11px]">
+            <a
+              href="https://github.com/Raflyf/WallpaperLive#privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent-text underline underline-offset-2"
+            >
+              WallpaperLive privacy
+            </a>
+            <a
+              href="https://github.com/Raflyf/TransparentBar#privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent-text underline underline-offset-2"
+            >
+              TransparentBar privacy
+            </a>
+          </div>
+        </article>
       </div>
 
     </section>
