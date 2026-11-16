@@ -3,9 +3,9 @@ import { escapeHtml } from './docs/render.ts';
 export const siteOrigin = 'https://livelydesk.vercel.app';
 export type PageLanguage = 'en' | 'id';
 
-export function renderPageMetadata({ title, description, lang, paths, schema, image = '/icons/livelydesk.png' }: {
+export function renderPageMetadata({ title, description, lang, paths, schema, image = '/icons/livelydesk.png', ogType = 'website' }: {
   title: string; description: string; lang: PageLanguage;
-  paths: Record<PageLanguage, string>; schema: Record<string, unknown>; image?: string;
+  paths: Record<PageLanguage, string>; schema: Record<string, unknown>; image?: string; ogType?: 'website' | 'article';
 }) {
   const canonical = siteOrigin + paths[lang];
   const json = JSON.stringify(schema).replace(/</g, '\\u003c');
@@ -16,7 +16,7 @@ export function renderPageMetadata({ title, description, lang, paths, schema, im
     '<link rel="canonical" href="' + canonical + '" />',
     ...(['en', 'id'] as const).map(locale => '<link rel="alternate" hreflang="' + locale + '" href="' + siteOrigin + paths[locale] + '" />'),
     '<link rel="alternate" hreflang="x-default" href="' + siteOrigin + paths.en + '" />',
-    '<meta property="og:type" content="website" />',
+    '<meta property="og:type" content="' + ogType + '" />',
     '<meta property="og:site_name" content="LivelyDesk" />',
     '<meta property="og:locale" content="' + (lang === 'id' ? 'id_ID' : 'en_US') + '" />',
     '<meta property="og:title" content="' + escapeHtml(title) + '" />',
