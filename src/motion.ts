@@ -70,6 +70,9 @@ export function setupVideoVisibility(video: HTMLVideoElement) {
   let observer: IntersectionObserver | undefined;
   if ('IntersectionObserver' in window) {
     observer = new IntersectionObserver(([entry]) => {
+      if ((entry.boundingClientRect?.width ?? 0) >= 600 && typeof video.poster === 'string' && video.poster.includes('360-v1')) {
+        video.poster = '/images/opt/preview-poster-v1.webp';
+      }
       visible = entry.isIntersecting && entry.intersectionRatio >= 0.25;
       sync();
     }, { threshold: [0, 0.25] });

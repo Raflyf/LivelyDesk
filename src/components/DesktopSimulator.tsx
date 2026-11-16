@@ -177,7 +177,7 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
             ref={videoRef}
             hidden={activeTab !== 'desktop'}
             src="/video/1109.mp4"
-            poster="/images/opt/preview-poster-v1.webp"
+            poster="/images/opt/preview-poster-360-v1.webp"
             preload="none"
             loop
             muted

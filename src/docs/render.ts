@@ -66,8 +66,9 @@ export function renderDocumentation(lang: 'en' | 'id') {
     '<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />',
     '<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />',
     '<script id="theme-init">try{document.documentElement.dataset.theme=localStorage.getItem(\'theme\')===\'light\'?\'light\':\'dark\'}catch{document.documentElement.dataset.theme=\'dark\'}</script>',
-    '<link rel="preload" as="font" type="font/woff2" href="/fonts/plus-jakarta-sans-latin-v1.woff2" crossorigin />',
-    '<link rel="preload" as="font" type="font/woff2" href="/fonts/bricolage-grotesque-latin-v1.woff2" crossorigin />',
+    '<link rel="preload" as="font" type="font/woff2" href="/fonts/plus-jakarta-sans-latin-v2.woff2" crossorigin />',
+    '<link rel="preload" as="font" type="font/woff2" href="/fonts/bricolage-grotesque-latin-v2.woff2" crossorigin />',
+    '<link rel="preload" as="font" type="font/woff2" href="/fonts/jetbrains-mono-latin-v2.woff2" crossorigin />',
   ].join('\n');
   const toc = (Object.entries(content.groups) as [DocGroup, string][]).map(([group, name]) =>
     '<div data-reveal class="docs-toc-group"><p class="docs-toc-title">' + escapeHtml(name) + '</p><ul>' + content.sections.filter(section => section.group === group).map(section => '<li><a href="#' + escapeHtml(section.id) + '">' + escapeHtml(section.title) + '</a></li>').join('') + '</ul></div>'

@@ -10,7 +10,6 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ t, releases }) => {
-  const anyLoading = releases.WallpaperLive.status === 'loading' || releases.TransparentBar.status === 'loading';
   const anyUnavailable = releases.WallpaperLive.status === 'unavailable' || releases.TransparentBar.status === 'unavailable';
 
   return (
@@ -61,30 +60,26 @@ export const Hero: React.FC<HeroProps> = ({ t, releases }) => {
 
         <p className="text-xs font-mono text-fg/70 pt-1">
           WallpaperLive {releases.WallpaperLive.version ?? '…'} · TransparentBar {releases.TransparentBar.version ?? '…'} · {t.hero.metaInfo}
-          {(anyLoading || anyUnavailable) && (
+          {anyUnavailable && (
             <span className="block mt-1">
-              {anyUnavailable ? (
-                <>
-                  {t.download.releaseUnavailable}{' '}
-                  <a
-                    href="https://github.com/Raflyf/WallpaperLive/releases/latest"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline text-accent-text"
-                  >
-                    WallpaperLive
-                  </a>{' '}
-                  ·{' '}
-                  <a
-                    href="https://github.com/Raflyf/TransparentBar/releases/latest"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline text-accent-text"
-                  >
-                    TransparentBar
-                  </a>
-                </>
-              ) : t.download.releaseLoading}
+              {t.download.releaseUnavailable}{' '}
+              <a
+                href="https://github.com/Raflyf/WallpaperLive/releases/latest"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline text-accent-text"
+              >
+                WallpaperLive
+              </a>{' '}
+              ·{' '}
+              <a
+                href="https://github.com/Raflyf/TransparentBar/releases/latest"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline text-accent-text"
+              >
+                TransparentBar
+              </a>
             </span>
           )}
         </p>
