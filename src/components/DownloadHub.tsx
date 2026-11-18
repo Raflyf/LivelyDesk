@@ -78,7 +78,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
           </div>
 
           <div className="space-y-4 pt-6 border-t border-fg/10">
-            {/* Direct dynamic download link to latest .exe */}
+            {/* Direct dynamic download link to latest installer */}
             <a
               href={wl.downloadUrl ?? 'https://github.com/Raflyf/WallpaperLive/releases/latest'}
               className="motion-button w-full min-h-12 inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-burnt text-ink font-semibold text-xs sm:text-sm hover:bg-burnt-hover shadow-md shadow-burnt/20"
@@ -179,7 +179,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
           </div>
 
           <div className="space-y-4 pt-6 border-t border-fg/10">
-            {/* Direct dynamic download link to latest .exe */}
+            {/* Direct dynamic download link to latest installer */}
             <a
               href={tb.downloadUrl ?? 'https://github.com/Raflyf/TransparentBar/releases/latest'}
               className="motion-button w-full min-h-12 inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-inverse text-on-inverse font-semibold text-xs sm:text-sm hover:bg-inverse/90 shadow-sm"

@@ -93,8 +93,8 @@ async function downloadCount(repo: ProductRepo, signal: AbortSignal): Promise<nu
   }
 }
 
-const CACHE_PREFIX = 'livelydesk:release:';
-const CACHE_TTL_MS = 30 * 60 * 1000;
+const CACHE_PREFIX = 'livelydesk:release:v2:';
+const CACHE_TTL_MS = 10 * 60 * 1000;
 const PARTIAL_TTL_MS = 5 * 60 * 1000;
 
 function validateReleaseState(repo: ProductRepo, data: Record<string, unknown>): ReleaseState | null {

@@ -595,7 +595,7 @@ export const docs: Record<'en' | 'id', DocContent> = {
               ],
               [
                 "TransparentBar",
-                "Rust stable, x86_64-pc-windows-msvc, Visual Studio C++ build tools, and Windows SDK. Installer packaging also needs Inno Setup."
+                "Rust stable, x86_64-pc-windows-msvc, Visual Studio C++ build tools, and Windows SDK. Installer packaging uses WiX Toolset v5 (.NET 8 SDK)."
               ]
             ]
           },
@@ -1220,7 +1220,7 @@ export const docs: Record<'en' | 'id', DocContent> = {
               ],
               [
                 "TransparentBar",
-                "Rust stable, x86_64-pc-windows-msvc, Visual Studio C++ build tools, dan Windows SDK. Pembuatan pemasang juga memerlukan Inno Setup."
+                "Rust stable, x86_64-pc-windows-msvc, Visual Studio C++ build tools, dan Windows SDK. Pembuatan pemasang menggunakan WiX Toolset v5 (.NET 8 SDK)."
               ]
             ]
           },

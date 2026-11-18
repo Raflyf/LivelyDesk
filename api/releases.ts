@@ -221,8 +221,8 @@ export async function GET(request: Request): Promise<Response> {
     const payload: ReleasePayload = { ...latest, downloads };
     const cacheHeader =
       downloads !== null
-        ? 'public, max-age=120, s-maxage=900, stale-while-revalidate=3600'
-        : 'public, max-age=60, s-maxage=300, stale-while-revalidate=900';
+        ? 'public, max-age=120, s-maxage=300, stale-while-revalidate=1800'
+        : 'public, max-age=60, s-maxage=180, stale-while-revalidate=600';
     return Response.json(payload, {
       status: 200,
       headers: { 'Cache-Control': cacheHeader, 'X-Content-Type-Options': 'nosniff' },
