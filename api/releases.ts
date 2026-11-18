@@ -71,7 +71,7 @@ function parseApiRelease(repo: ProductRepo, value: unknown): Omit<ReleasePayload
   }
   const assets = release.assets.map(record);
   const installer = assets.find(
-    asset => typeof asset.name === 'string' && /(?:setup|installer).*\.exe$/i.test(asset.name),
+    asset => typeof asset.name === 'string' && /(?:setup|installer).*\.(?:msi|exe)$/i.test(asset.name),
   );
   const portable = assets.find(
     asset => typeof asset.name === 'string' && /\.zip$/i.test(asset.name),
@@ -121,7 +121,7 @@ async function sumDownloads(repo: ProductRepo, signal: AbortSignal): Promise<num
       if (!Array.isArray(release.assets)) throw new Error('Invalid release assets');
       for (const rawAsset of release.assets) {
         const asset = record(rawAsset);
-        if (typeof asset.name !== 'string' || !/\.(exe|zip)$/i.test(asset.name)) continue;
+        if (typeof asset.name !== 'string' || !/\.(?:exe|msi|zip)$/i.test(asset.name)) continue;
         if (typeof asset.download_count !== 'number' || !Number.isSafeInteger(asset.download_count) || asset.download_count < 0) {
           throw new Error('Invalid download count');
         }
@@ -179,7 +179,7 @@ async function fetchWebFallback(repo: ProductRepo, signal: AbortSignal): Promise
     if (match[1].startsWith(prefix)) hrefs.push('https://github.com' + match[1]);
   }
 
-  const installerCandidate = hrefs.find(href => /(?:setup|installer).*\.exe$/i.test(href));
+  const installerCandidate = hrefs.find(href => /(?:setup|installer).*\.(?:msi|exe)$/i.test(href));
   const portableCandidate = hrefs.find(href => /\.zip$/i.test(href));
   const downloadUrl = installerCandidate ? safeDownloadUrl(repo, installerCandidate) : null;
   const portableUrl = portableCandidate ? safeDownloadUrl(repo, portableCandidate) : null;

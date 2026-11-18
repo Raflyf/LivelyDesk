@@ -41,7 +41,7 @@ export function parseLatestRelease(repo: ProductRepo, value: unknown): ReleaseSt
     throw new Error('Invalid latest stable release');
   }
   const assets = release.assets.map(record);
-  const installer = assets.find(asset => typeof asset.name === 'string' && /(?:setup|installer).*\.exe$/i.test(asset.name));
+  const installer = assets.find(asset => typeof asset.name === 'string' && /(?:setup|installer).*\.(?:msi|exe)$/i.test(asset.name));
   const portable = assets.find(asset => typeof asset.name === 'string' && /\.zip$/i.test(asset.name));
 
   let downloadUrl: string | null = null;
@@ -83,7 +83,7 @@ async function downloadCount(repo: ProductRepo, signal: AbortSignal): Promise<nu
       if (!Array.isArray(release.assets)) throw new Error('Invalid release assets');
       for (const value of release.assets) {
         const asset = record(value);
-        if (typeof asset.name !== 'string' || !/\.(exe|zip)$/i.test(asset.name)) continue;
+        if (typeof asset.name !== 'string' || !/\.(?:exe|msi|zip)$/i.test(asset.name)) continue;
         if (typeof asset.download_count !== 'number' || !Number.isSafeInteger(asset.download_count) || asset.download_count < 0) throw new Error('Invalid download count');
         total += asset.download_count;
         if (!Number.isSafeInteger(total)) throw new Error('Download count too large');

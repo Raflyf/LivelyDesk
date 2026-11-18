@@ -14,6 +14,12 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
   const tb = releases.TransparentBar;
   const numberLocale = lang === 'id' ? 'id-ID' : 'en-US';
   const statusLabel = (status: string) => status === 'loading' ? t.download.releaseLoading : t.download.releaseUnavailable;
+  const installerLabel = (url: string | null) => {
+    if (!url) return t.download.latestRelease;
+    return url.toLowerCase().endsWith('.msi')
+      ? t.download.installerBtn.replace('(.exe)', '(.msi)')
+      : t.download.installerBtn;
+  };
 
   return (
     <section id="download" className="py-16 md:py-24 px-4 sm:px-6 max-w-6xl mx-auto">
@@ -78,7 +84,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
               className="motion-button w-full min-h-12 inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-burnt text-ink font-semibold text-xs sm:text-sm hover:bg-burnt-hover shadow-md shadow-burnt/20"
             >
               <Download className="w-4 h-4 shrink-0" aria-hidden="true" />
-              <span>{wl.downloadUrl ? t.download.installerBtn : t.download.latestRelease}</span>
+              <span>{installerLabel(wl.downloadUrl)}</span>
             </a>
 
             {wl.portableUrl && (
@@ -179,7 +185,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
               className="motion-button w-full min-h-12 inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-inverse text-on-inverse font-semibold text-xs sm:text-sm hover:bg-inverse/90 shadow-sm"
             >
               <Download className="w-4 h-4 text-burnt shrink-0" aria-hidden="true" />
-              <span>{tb.downloadUrl ? t.download.installerBtn : t.download.latestRelease}</span>
+              <span>{installerLabel(tb.downloadUrl)}</span>
             </a>
 
             {tb.portableUrl && (
