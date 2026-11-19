@@ -86,7 +86,7 @@ export const Hero: React.FC<HeroProps> = ({ t, releases }) => {
       </div>
 
       {/* 3 Value Metric Cards */}
-      <div className="motion-sequence grid grid-cols-1 md:grid-cols-3 gap-4 mt-14 pt-8 border-t border-fg/10">
+      <div className="motion-sequence grid grid-cols-1 md:grid-cols-3 auto-rows-fr gap-4 mt-14 pt-8 border-t border-fg/10">
         <div className="motion-card bg-surface p-5 rounded-2xl border border-fg/10 flex items-start gap-3.5">
           <div className="p-2.5 rounded-xl bg-fg/5 text-accent-text">
             <Zap className="w-5 h-5" aria-hidden="true" />

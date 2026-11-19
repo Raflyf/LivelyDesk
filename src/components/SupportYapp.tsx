@@ -39,7 +39,7 @@ export const SupportYapp: React.FC<SupportYappProps> = ({ t }) => {
               yapp.ink/raflyf
             </div>
             <h3 className="relative font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-ink">Yapp<span className="text-burnt">.</span></h3>
-            <p className="relative mt-4 mb-8 max-w-[27ch] text-sm text-ink/80 leading-relaxed">{t.support.yappDesc}</p>
+            <p className="relative mt-4 mb-8 max-w-[27ch] flex-1 text-sm text-ink/80 leading-relaxed">{t.support.yappDesc}</p>
             <a
               href="https://yapp.ink/raflyf"
               target="_blank"
@@ -63,7 +63,7 @@ export const SupportYapp: React.FC<SupportYappProps> = ({ t }) => {
               saweria.co/BuyMatcha
             </div>
             <h3 className="relative font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-cream">Saweria<span className="text-burnt">.</span></h3>
-            <p className="relative mt-4 mb-8 max-w-[27ch] text-sm text-cream/80 leading-relaxed">{t.support.saweriaDesc}</p>
+            <p className="relative mt-4 mb-8 max-w-[27ch] flex-1 text-sm text-cream/80 leading-relaxed">{t.support.saweriaDesc}</p>
             <a
               href="https://saweria.co/BuyMatcha"
               target="_blank"

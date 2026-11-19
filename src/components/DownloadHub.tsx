@@ -39,10 +39,10 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
       </div>
 
       {/* Two Main Cards: WallpaperLive & TransparentBar */}
-      <div className="motion-sequence grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      <div className="motion-sequence grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-10">
 
         {/* Card 1: WallpaperLive */}
-        <div data-reveal className="motion-card bg-surface p-8 rounded-3xl border border-fg/10 flex flex-col justify-between shadow-xs hover:border-burnt/40">
+        <div data-reveal className="motion-card bg-surface p-6 sm:p-7 lg:p-8 rounded-3xl border border-fg/10 flex flex-col justify-between shadow-xs hover:border-burnt/40">
           <div>
             <div className="flex items-center justify-between gap-2 mb-4">
               <span className="px-3 py-1 rounded-full bg-inverse text-on-inverse text-xs font-mono font-semibold">
@@ -59,7 +59,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
                 </a>
               </h3>
             </div>
-            <p className="text-sm text-fg/75 mb-4 leading-relaxed md:min-h-[4.25rem]">
+            <p className="text-sm text-fg/75 mb-4 leading-relaxed md:min-h-[5.75rem] lg:min-h-[4.25rem]">
               {t.download.wpDesc}
             </p>
             <a href={lang === 'id' ? '/wallpaperlive/id' : '/wallpaperlive'} className="mb-6 min-h-11 inline-flex items-center text-sm font-semibold text-accent-text underline underline-offset-4">
@@ -67,7 +67,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
             </a>
 
             {/* Feature Checklist */}
-            <ul className="text-xs font-mono text-fg/70 space-y-2 mb-6">
+            <ul className="text-xs font-mono text-fg/70 space-y-2 mb-6 md:min-h-[7rem] lg:min-h-[5rem] xl:min-h-[4rem]">
               {t.download.wpChecklist.map((item, idx) => (
                 <li key={idx} className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-burnt shrink-0" aria-hidden="true"></span>
@@ -75,7 +75,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
                 </li>
               ))}
             </ul>
-            <p className="text-xs text-fg/70 leading-relaxed mb-6 md:min-h-[3.75rem]">
+            <p className="text-xs text-fg/70 leading-relaxed mb-6 md:min-h-[6.1rem] lg:min-h-[3.75rem]">
               {t.download.wpCompatibility}
             </p>
           </div>
@@ -146,7 +146,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
         </div>
 
         {/* Card 2: TransparentBar */}
-        <div data-reveal className="motion-card bg-surface p-8 rounded-3xl border border-fg/10 flex flex-col justify-between shadow-xs hover:border-burnt/40">
+        <div data-reveal className="motion-card bg-surface p-6 sm:p-7 lg:p-8 rounded-3xl border border-fg/10 flex flex-col justify-between shadow-xs hover:border-burnt/40">
           <div>
             <div className="flex items-center justify-between gap-2 mb-4">
               <span className="px-3 py-1 rounded-full bg-burnt text-ink text-xs font-mono font-semibold">
@@ -163,7 +163,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
                 </a>
               </h3>
             </div>
-            <p className="text-sm text-fg/75 mb-4 leading-relaxed md:min-h-[4.25rem]">
+            <p className="text-sm text-fg/75 mb-4 leading-relaxed md:min-h-[5.75rem] lg:min-h-[4.25rem]">
               {t.download.tbDesc}
             </p>
             <a href={lang === 'id' ? '/transparentbar/id' : '/transparentbar'} className="mb-6 min-h-11 inline-flex items-center text-sm font-semibold text-accent-text underline underline-offset-4">
@@ -171,7 +171,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
             </a>
 
             {/* Feature Checklist */}
-            <ul className="text-xs font-mono text-fg/70 space-y-2 mb-6">
+            <ul className="text-xs font-mono text-fg/70 space-y-2 mb-6 md:min-h-[7rem] lg:min-h-[5rem] xl:min-h-[4rem]">
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-burnt shrink-0" aria-hidden="true"></span>
                 <span>{t.benchmark.tbRowRam} · {t.hero.stat2Sub}</span>
@@ -185,7 +185,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
                 <span>{t.download.tbStartup}</span>
               </li>
             </ul>
-            <p className="text-xs text-fg/70 leading-relaxed mb-6 md:min-h-[3.75rem]">
+            <p className="text-xs text-fg/70 leading-relaxed mb-6 md:min-h-[6.1rem] lg:min-h-[3.75rem]">
               {t.download.tbCompatibility}
             </p>
           </div>
@@ -247,13 +247,13 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
       </div>
 
       {/* System Requirements and Security Banner */}
-      <div data-reveal className="bg-fg/5 p-5 rounded-2xl border border-fg/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono text-fg/70">
-        <div className="flex items-center gap-2.5">
-          <Monitor className="w-4 h-4 text-accent-text shrink-0" aria-hidden="true" />
+      <div data-reveal className="bg-fg/5 p-5 sm:p-6 rounded-2xl border border-fg/10 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-center text-xs font-mono text-fg/70">
+        <div className="flex items-start sm:items-center gap-2.5">
+          <Monitor className="w-4 h-4 text-accent-text shrink-0 mt-0.5 sm:mt-0" aria-hidden="true" />
           <span>{t.download.requirements}</span>
         </div>
-        <div className="flex items-center gap-2 text-fg/70">
-          <Terminal className="w-4 h-4 shrink-0" aria-hidden="true" />
+        <div className="flex items-start sm:items-center gap-2.5 text-fg/70">
+          <Terminal className="w-4 h-4 text-accent-text shrink-0 mt-0.5 sm:mt-0" aria-hidden="true" />
           <span>{t.download.checksumNote}</span>
         </div>
       </div>
@@ -294,7 +294,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
               </li>
             </ul>
           </div>
-          <div className="flex flex-wrap gap-x-4 gap-y-1 sm:gap-y-2 pt-3 mt-4 border-t border-fg/10 font-mono text-[11px]">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 sm:gap-y-2 pt-3 mt-4 border-t border-fg/10 md:min-h-[3.5rem] lg:min-h-0 font-mono text-[11px]">
             <a
               href="https://github.com/Raflyf/WallpaperLive#code-signing-policy"
               target="_blank"
@@ -332,7 +332,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
               <strong className="text-fg">{t.download.privacyTbLabel}</strong> {t.download.privacyTbText}
             </p>
           </div>
-          <div className="flex flex-wrap gap-x-4 gap-y-1 sm:gap-y-2 pt-3 mt-4 border-t border-fg/10 font-mono text-[11px]">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 sm:gap-y-2 pt-3 mt-4 border-t border-fg/10 md:min-h-[3.5rem] lg:min-h-0 font-mono text-[11px]">
             <a
               href="https://github.com/Raflyf/WallpaperLive#privacy-policy"
               target="_blank"

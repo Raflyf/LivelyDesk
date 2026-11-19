@@ -42,7 +42,7 @@ export const Features: React.FC<FeaturesProps> = ({ t }) => {
       </div>
 
       {/* Bento Grid */}
-      <div className="motion-sequence grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="motion-sequence grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr gap-5">
         {featureItems.map((item, idx) => (
           <div
             key={idx}
@@ -53,7 +53,7 @@ export const Features: React.FC<FeaturesProps> = ({ t }) => {
               <div className="w-11 h-11 rounded-2xl bg-fg/5 flex items-center justify-center mb-5">
                 {icons[idx]}
               </div>
-              <h3 className="font-display text-lg font-bold text-fg mb-2.5">
+              <h3 className="font-display text-lg font-bold text-fg mb-2.5 md:min-h-[3.5rem] flex items-start">
                 {item.title}
               </h3>
               <p className="text-xs sm:text-sm text-fg/75 leading-relaxed">

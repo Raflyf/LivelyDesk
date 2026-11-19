@@ -94,7 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({ t, lang, onToggleLang, isDark, o
             <span className="font-display font-bold text-base tracking-tight text-fg leading-none">
               LivelyDesk
             </span>
-            <span className="text-[10px] text-fg/70 font-mono tracking-wider uppercase mt-0.5">
+            <span className="hidden lg:block text-[10px] text-fg/70 font-mono tracking-wider uppercase mt-0.5">
               WallpaperLive <span className="text-accent-text font-normal">&amp;</span> TransparentBar
             </span>
           </span>
@@ -137,7 +137,7 @@ export const Navbar: React.FC<NavbarProps> = ({ t, lang, onToggleLang, isDark, o
           <a
             href={lang === 'id' ? '/doc/id' : '/doc'}
             title={t.nav.docs}
-            className="motion-button hidden min-h-11 min-w-11 sm:inline-flex items-center justify-center gap-1.5 rounded-lg px-2 text-xs font-semibold text-fg/80 hover:text-accent-text"
+            className="motion-button hidden min-h-11 min-w-11 md:inline-flex items-center justify-center gap-1.5 rounded-lg px-2 text-xs font-semibold text-fg/80 hover:text-accent-text"
           >
             <BookOpen className="h-4 w-4 shrink-0" aria-hidden="true" />
             <span>Docs</span>
@@ -202,7 +202,7 @@ export const Navbar: React.FC<NavbarProps> = ({ t, lang, onToggleLang, isDark, o
           <button
             type="button"
             onClick={scrollToSection('support')}
-            className="motion-button hidden min-h-11 sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-burnt/40 text-xs font-semibold text-accent-text hover:bg-burnt/10 transition-colors cursor-pointer"
+            className="motion-button hidden min-h-11 md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-burnt/40 text-xs font-semibold text-accent-text hover:bg-burnt/10 transition-colors cursor-pointer"
           >
             <Heart className="w-3.5 h-3.5 fill-burnt" aria-hidden="true" />
             <span>{t.nav.supportBtn}</span>
