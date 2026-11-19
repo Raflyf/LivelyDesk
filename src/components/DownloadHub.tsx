@@ -16,9 +16,9 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
   const statusLabel = (status: string) => status === 'loading' ? t.download.releaseLoading : t.download.releaseUnavailable;
   const installerLabel = (url: string | null) => {
     if (!url) return t.download.latestRelease;
-    return url.toLowerCase().endsWith('.msi')
-      ? t.download.installerBtn.replace('(.exe)', '(.msi)')
-      : t.download.installerBtn;
+    return url.toLowerCase().endsWith('.exe')
+      ? t.download.installerBtn.replace('(.msi)', '(.exe)')
+      : t.download.installerBtn.replace('(.exe)', '(.msi)');
   };
 
   return (

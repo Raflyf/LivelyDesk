@@ -110,16 +110,16 @@ export const docs: Record<'en' | 'id', DocContent> = {
           {
             "kind": "ol",
             "items": [
-              "Open WallpaperLive Releases and download the installer. Keep it in a dedicated folder without unrelated DLLs.",
-              "Run Setup as your normal Windows user. If a decoder is needed, review the download prompt before consenting. A matching installed decoder or matching local archive avoids that download.",
-              "Finish Setup and open WallpaperLive from the Start menu. Installation does not apply a wallpaper or enable startup automatically.",
-              "Open Settings and read Version. This identifies the executable build, independently of the installer filename or a browser-added download suffix."
+              "Open WallpaperLive Releases and download the Windows x64 MSI installer (wallpaperlivesetup-v0.2.2.msi). Keep it in a dedicated folder without unrelated DLLs.",
+              "Run Setup as your normal Windows user without administrator privileges; the MSI installer itself makes no network request.",
+              "When applying a video without libmpv-2.dll present, review the in-app Acrylic consent prompt and confirm to download and verify the pinned decoder automatically (or run scripts\\Get-Decoder.ps1 once).",
+              "Finish Setup, open WallpaperLive from the Start menu, and open Settings to read Version (taken from the executable build rather than the installer filename)."
             ]
           },
           {
             "kind": "note",
             "title": "Offline installation",
-            "text": "For the installer described in the pinned README, download the linked upstream archive separately, rename it mpv-dev.7z, and place it beside the installer. Setup checks archive and DLL SHA256 values. Pair the archive with the matching release instructions; do not substitute an arbitrary decoder. Decoder binaries remain a separate download."
+            "text": "If you prefer offline decoder preparation, download the pinned upstream archive separately, rename it mpv-dev.7z, and place it beside the installer before opening the app, or run scripts\\Get-Decoder.ps1 once. WallpaperLive checks archive and DLL SHA-256 values before extraction."
           },
           {
             "kind": "links",
@@ -243,6 +243,18 @@ export const docs: Record<'en' | 'id', DocContent> = {
                 "Choose 24, 30, 45, or 60. Changes affect running players without a reload or another cache conversion."
               ],
               [
+                "Quality",
+                "Select Native (original media untouched, bypasses cache), High, Optimize, Medium, or Low (720p cap) beside FPS in Library."
+              ],
+              [
+                "Day Clock",
+                "Optional Desktop Day Clock tab with Anurati typography, HSV wheel and hex picker with Confirm, 12h/24h format, size/opacity controls, and behind-icons layering."
+              ],
+              [
+                "Open TransparentBar",
+                "Settings control to launch TransparentBar or toggle it alongside WallpaperLive."
+              ],
+              [
                 "Sound: On/Off",
                 "Sound starts off. At most one wallpaper stream plays audio; files without audio remain silent."
               ],
@@ -274,7 +286,7 @@ export const docs: Record<'en' | 'id', DocContent> = {
         "blocks": [
           {
             "kind": "p",
-            "text": "Oversized SDR videos start from the original while one background worker creates display-sized H.264/AAC MP4 copies. Smaller sources are not upscaled. HDR and animated images use originals. Conversion preserves original files, audio, aspect ratio, and playback speed, but its compression is lossy."
+            "text": "Oversized SDR videos start from the original while one background worker creates display-sized H.264/AAC MP4 copies according to the chosen Quality preset (Native bypasses cache conversion; High, Optimize, Medium, and Low build quality-isolated copies). Smaller sources are not upscaled. HDR and animated images use originals. Conversion preserves original files, audio, aspect ratio, and playback speed, but its compression is lossy."
           },
           {
             "kind": "table",
@@ -303,7 +315,7 @@ export const docs: Record<'en' | 'id', DocContent> = {
           },
           {
             "kind": "p",
-            "text": "Settings shows live RAM and cache controls. Clear unused cache requires confirmation and protects imported media, active originals, and active or waiting cache outputs. If another copy cannot fit, original playback continues. Cache location:"
+            "text": "Settings provides cache controls and clears unused cache with confirmation, while the two-line status footer shows active media specifications. Clear unused cache protects imported media, active originals, and active or waiting cache outputs. If another copy cannot fit, original playback continues. Cache location:"
           },
           {
             "kind": "code",
@@ -333,9 +345,9 @@ export const docs: Record<'en' | 'id', DocContent> = {
             "kind": "ol",
             "items": [
               "Read your installed Version in Settings before checking an update.",
-              "Choose Check for updates in the tray. The background check presents a native English result dialog.",
-              "Confirm before opening a newer release page. Download and install the update yourself; the app does not do this automatically.",
-              "Install an upgrade into the same folder so Setup can reuse a matching decoder."
+              "Choose Check for updates from Settings or the tray menu (or configure automatic launch update checks).",
+              "When a newer release is available, use the in-app Acrylic update notification: What's new opens the release page, and Update downloads the official MSI installer and SHA256SUMS.txt with SHA-256 verification before launching Setup.",
+              "Upgrade directly with the verified MSI into your user install folder while preserving your library, settings, and cache."
             ]
           }
         ]
@@ -352,14 +364,14 @@ export const docs: Record<'en' | 'id', DocContent> = {
           {
             "kind": "ol",
             "items": [
-              "Before removing the application, choose Stop to remove live wallpapers, then Exit to close it.",
-              "Keep your original media and preserve data you want to retain. Do not delete media or configuration folders as a troubleshooting step."
+              "Before removing the application, choose Stop to remove live wallpapers, then Exit to close it (or let the MSI installer close it cleanly).",
+              "Keep your original media and preserve any personal media files in your user folders; removing a Library entry or uninstalling does not delete your original media."
             ]
           },
           {
             "kind": "note",
-            "title": "Uninstall and data limits",
-            "text": "The pinned README gives the cache location, but no complete settings-data path, WallpaperLive log path, or uninstall retention policy. Check release-specific removal instructions rather than assuming all data is deleted or preserved."
+            "title": "Uninstall cleanup and data retention",
+            "text": "MSI upgrades keep settings, library entries, cached videos, and startup state intact. A full MSI uninstall removes the install folder (including runtime\\libmpv-2.dll and updates\\), %LOCALAPPDATA%\\WallpaperLive (settings.ini and video-cache\\), the HKCU Run startup entry, and HKCU\\Software\\Raflyf\\WallpaperLive registry keys."
           }
         ]
       },
@@ -456,13 +468,13 @@ export const docs: Record<'en' | 'id', DocContent> = {
           },
           {
             "kind": "p",
-            "text": "TransparentBar checks GitHub Releases and notifies you through the tray. Check for updates starts a manual check; Update available opens the latest release page. About / license shows version and license information."
+            "text": "TransparentBar checks GitHub Releases and notifies you through the tray. Check for updates starts a manual check; Update available opens the latest release page. About / license shows version and license information, and Buy me a coffee / Support via Saweria open only when selected."
           },
           {
             "kind": "ol",
             "items": [
               "Choose Exit to restore the saved taskbar appearance before closing or removing the app.",
-              "For an installer update, run the new installer. It closes the running instance, restores its saved appearance, and starts the new version afterward.",
+              "For an MSI installer update, run the new MSI (TransparentBar-setup-v0.2.5.msi). It closes the running instance, restores its saved appearance, preserves the loaded versioned bridge DLL so Explorer never restarts, and sweeps older unlocked bridge DLLs on next launch.",
               "For an installed package, use its standard uninstall entry when removing it. Keep portable package files together while still in use."
             ]
           },
@@ -591,7 +603,7 @@ export const docs: Record<'en' | 'id', DocContent> = {
             "rows": [
               [
                 "WallpaperLive",
-                "Rust toolchain with Windows linker prerequisites. Follow the source build and decoder scripts in its README."
+                "Rust toolchain with Windows linker prerequisites, plus WiX Toolset 3.14 via scripts\\Installer.ps1 for MSI packaging. Follow the build and Get-Decoder.ps1 scripts in its README."
               ],
               [
                 "TransparentBar",
@@ -608,23 +620,23 @@ export const docs: Record<'en' | 'id', DocContent> = {
             "items": [
               {
                 "label": "WallpaperLive license",
-                "url": "https://github.com/Raflyf/WallpaperLive/blob/46dad013e6498a963350840e13f6c445e09be5ce/LICENSE"
+                "url": "https://github.com/Raflyf/WallpaperLive/blob/ea1f8054b5bdadb5d989f05b659823e6724d6cc1/LICENSE"
               },
               {
                 "label": "WallpaperLive dependency notices",
-                "url": "https://github.com/Raflyf/WallpaperLive/blob/46dad013e6498a963350840e13f6c445e09be5ce/THIRD_PARTY.md"
+                "url": "https://github.com/Raflyf/WallpaperLive/blob/ea1f8054b5bdadb5d989f05b659823e6724d6cc1/THIRD_PARTY.md"
               },
               {
                 "label": "WallpaperLive source build instructions",
-                "url": "https://github.com/Raflyf/WallpaperLive/blob/46dad013e6498a963350840e13f6c445e09be5ce/README.md"
+                "url": "https://github.com/Raflyf/WallpaperLive/blob/ea1f8054b5bdadb5d989f05b659823e6724d6cc1/README.md"
               },
               {
                 "label": "TransparentBar license",
-                "url": "https://github.com/Raflyf/TransparentBar/blob/2ccb731a63a1079ad650690a02ab0aee8724b9b9/LICENSE.md"
+                "url": "https://github.com/Raflyf/TransparentBar/blob/7ac092906efd334b781d487d198cf2ccef35928a/LICENSE.md"
               },
               {
                 "label": "TransparentBar source build instructions",
-                "url": "https://github.com/Raflyf/TransparentBar/blob/2ccb731a63a1079ad650690a02ab0aee8724b9b9/README.md"
+                "url": "https://github.com/Raflyf/TransparentBar/blob/7ac092906efd334b781d487d198cf2ccef35928a/README.md"
               },
               {
                 "label": "WallpaperLive Code signing policy",
@@ -735,16 +747,16 @@ export const docs: Record<'en' | 'id', DocContent> = {
           {
             "kind": "ol",
             "items": [
-              "Buka WallpaperLive Releases dan unduh pemasangnya. Simpan dalam folder khusus tanpa DLL lain yang tidak terkait.",
-              "Jalankan Setup sebagai pengguna Windows biasa. Jika decoder diperlukan, baca permintaan unduhan sebelum menyetujuinya. Decoder terpasang atau arsip lokal yang cocok membuat unduhan tidak diperlukan.",
-              "Selesaikan Setup dan buka WallpaperLive dari Start menu. Pemasangan tidak langsung menerapkan wallpaper atau mengaktifkan startup.",
-              "Buka Settings dan baca Version. Nilai ini menunjukkan build aplikasi, bukan sekadar nama pemasang atau akhiran yang ditambahkan browser saat mengunduh."
+              "Buka WallpaperLive Releases dan unduh pemasang MSI Windows x64 (wallpaperlivesetup-v0.2.2.msi). Simpan dalam folder khusus tanpa DLL lain yang tidak terkait.",
+              "Jalankan Setup sebagai pengguna Windows biasa tanpa hak administrator; pemasang MSI itu sendiri tidak mengirim permintaan jaringan.",
+              "Saat menerapkan video tanpa libmpv-2.dll, tinjau dialog persetujuan Acrylic di dalam aplikasi lalu konfirmasi untuk mengunduh serta memverifikasi decoder resmi secara otomatis (atau jalankan scripts\\Get-Decoder.ps1 sekali).",
+              "Selesaikan Setup, buka WallpaperLive dari Start menu, lalu buka Settings dan baca Version (nilai ini diambil dari build aplikasi, bukan nama file pemasang)."
             ]
           },
           {
             "kind": "note",
             "title": "Pemasangan offline",
-            "text": "Untuk pemasang yang dijelaskan README pada revisi sumber, unduh arsip upstream berikut secara terpisah, ubah namanya menjadi mpv-dev.7z, lalu letakkan di samping pemasang. Setup memeriksa SHA256 arsip dan DLL. Cocokkan arsip dengan petunjuk rilis terkait; jangan menggantinya dengan decoder sembarang. Biner decoder tetap merupakan unduhan terpisah."
+            "text": "Jika ingin menyiapkan decoder secara offline, unduh arsip upstream berikut secara terpisah, ubah namanya menjadi mpv-dev.7z, lalu letakkan di samping pemasang sebelum membuka aplikasi (atau jalankan scripts\\Get-Decoder.ps1 sekali). WallpaperLive memeriksa nilai SHA-256 arsip dan DLL sebelum ekstraksi."
           },
           {
             "kind": "links",
@@ -868,6 +880,18 @@ export const docs: Record<'en' | 'id', DocContent> = {
                 "Pilih 24, 30, 45, atau 60. Perubahan berlaku pada pemutar aktif tanpa memuat ulang atau membuat cache baru."
               ],
               [
+                "Quality",
+                "Pilih Native (media asli utuh tanpa konversi cache), High, Optimize, Medium, atau Low (batas 720p) di samping FPS pada Library."
+              ],
+              [
+                "Day Clock",
+                "Tab opsional Desktop Day Clock dengan tipografi Anurati, pemilih warna HSV dan input hex beserta tombol Confirm, format 12h/24h, kontrol ukuran/opasitas, serta penempatan di belakang ikon desktop."
+              ],
+              [
+                "Open TransparentBar",
+                "Pintasan di Settings untuk membuka atau mengaktifkan TransparentBar bersama WallpaperLive."
+              ],
+              [
                 "Sound: On/Off",
                 "Suara awalnya nonaktif. Hanya satu aliran wallpaper yang memutar audio; file tanpa audio tetap senyap."
               ],
@@ -899,7 +923,7 @@ export const docs: Record<'en' | 'id', DocContent> = {
         "blocks": [
           {
             "kind": "p",
-            "text": "Video SDR beresolusi besar diputar dari file asli saat satu worker latar membuat salinan H.264/AAC MP4 sesuai ukuran layar. Sumber kecil tidak diperbesar. HDR dan gambar animasi memakai file asli. Konversi mempertahankan file asli, audio, rasio aspek, serta kecepatan pemutaran, tetapi kompresinya lossy."
+            "text": "Video SDR beresolusi besar diputar dari file asli saat satu worker latar membuat salinan H.264/AAC MP4 sesuai preset Quality yang dipilih (Native melewati konversi cache; High, Optimize, Medium, dan Low membuat salinan terpisah per preset). Sumber kecil tidak diperbesar. HDR dan gambar animasi memakai file asli. Konversi mempertahankan file asli, audio, rasio aspek, serta kecepatan pemutaran, tetapi kompresinya lossy."
           },
           {
             "kind": "table",
@@ -928,7 +952,7 @@ export const docs: Record<'en' | 'id', DocContent> = {
           },
           {
             "kind": "p",
-            "text": "Settings menampilkan penggunaan RAM dan kontrol cache. Clear unused cache meminta konfirmasi serta melindungi media impor, file asli aktif, dan hasil cache aktif atau menunggu. Jika salinan baru tidak muat, file asli tetap diputar. Lokasi cache:"
+            "text": "Settings menyediakan kontrol cache dan membersihkan cache yang tidak terpakai setelah konfirmasi, sementara baris status bawah menampilkan spesifikasi media aktif. Pembersihan ini melindungi media impor, file asli aktif, serta hasil cache aktif atau menunggu. Jika salinan baru tidak muat, file asli tetap diputar. Lokasi cache:"
           },
           {
             "kind": "code",
@@ -958,9 +982,9 @@ export const docs: Record<'en' | 'id', DocContent> = {
             "kind": "ol",
             "items": [
               "Baca Version yang terpasang di Settings sebelum memeriksa pembaruan.",
-              "Pilih Check for updates pada tray. Pemeriksaan latar menampilkan dialog hasil native dalam bahasa Inggris.",
-              "Berikan konfirmasi sebelum membuka halaman rilis baru. Unduh dan pasang pembaruan sendiri; aplikasi tidak melakukannya secara otomatis.",
-              "Pasang pembaruan ke folder yang sama agar Setup dapat memakai kembali decoder yang cocok."
+              "Pilih Check for updates di Settings atau menu tray (atau atur pemeriksaan pembaruan otomatis saat aplikasi dibuka).",
+              "Jika tersedia rilis baru, gunakan notifikasi Acrylic di dalam aplikasi: What's new membuka halaman rilis, sedangkan Update mengunduh pemasang MSI resmi dan SHA256SUMS.txt dengan verifikasi SHA-256 sebelum menjalankan Setup.",
+              "Perbarui langsung dengan MSI terverifikasi ke folder pengguna Anda sembari mempertahankan library, pengaturan, dan cache."
             ]
           }
         ]
@@ -977,14 +1001,14 @@ export const docs: Record<'en' | 'id', DocContent> = {
           {
             "kind": "ol",
             "items": [
-              "Sebelum menghapus aplikasi, pilih Stop untuk menghentikan wallpaper bergerak, lalu Exit untuk menutup aplikasi.",
-              "Simpan media asli dan data yang ingin dipertahankan. Jangan hapus folder media atau konfigurasi sebagai langkah penanganan masalah."
+              "Sebelum menghapus aplikasi, pilih Stop untuk menghentikan wallpaper bergerak, lalu Exit untuk menutup aplikasi (atau biarkan pemasang MSI menutupnya secara aman).",
+              "Simpan media asli di folder Anda; menghapus entri Library atau mencopot aplikasi tidak menghapus file media asli Anda."
             ]
           },
           {
             "kind": "note",
-            "title": "Batas informasi uninstall dan data",
-            "text": "README sumber memberi lokasi cache, tetapi tidak merinci lokasi seluruh pengaturan, jalur log WallpaperLive, atau kebijakan penyimpanan data setelah uninstall. Periksa petunjuk penghapusan untuk rilis terkait; jangan menganggap semua data pasti dihapus atau dipertahankan."
+            "title": "Pembersihan uninstall dan penyimpanan data",
+            "text": "Pembaruan MSI mempertahankan pengaturan, entri library, cache video, dan status startup. Uninstall MSI penuh menghapus folder instalasi (termasuk runtime\\libmpv-2.dll dan updates\\), %LOCALAPPDATA%\\WallpaperLive (settings.ini dan video-cache\\), entri startup HKCU Run, serta kunci registri HKCU\\Software\\Raflyf\\WallpaperLive."
           }
         ]
       },
@@ -1081,13 +1105,13 @@ export const docs: Record<'en' | 'id', DocContent> = {
           },
           {
             "kind": "p",
-            "text": "TransparentBar memeriksa GitHub Releases dan memberi pemberitahuan melalui tray. Check for updates memulai pemeriksaan manual; Update available membuka halaman rilis terbaru. About / license menampilkan versi dan informasi lisensi."
+            "text": "TransparentBar memeriksa GitHub Releases dan memberi pemberitahuan melalui tray. Check for updates memulai pemeriksaan manual; Update available membuka halaman rilis terbaru. About / license menampilkan versi serta lisensi, dan Buy me a coffee / Support via Saweria terbuka hanya saat dipilih."
           },
           {
             "kind": "ol",
             "items": [
               "Pilih Exit untuk memulihkan tampilan taskbar yang tersimpan sebelum menutup atau menghapus aplikasi.",
-              "Untuk memperbarui melalui pemasang, jalankan pemasang baru. Pemasang menutup instance aktif, memulihkan tampilan tersimpan, lalu menjalankan versi baru setelah selesai.",
+              "Untuk pembaruan melalui pemasang MSI, jalankan MSI baru (TransparentBar-setup-v0.2.5.msi). Pemasang menutup instance aktif, memulihkan tampilan tersimpan, mempertahankan DLL bridge berversi yang sedang dimuat agar Explorer tidak perlu restart, dan membersihkan DLL lama yang tidak terkunci saat aplikasi dimulai.",
               "Untuk paket terpasang, gunakan entri uninstall standar saat menghapusnya. Tetap simpan file paket portable bersama selama masih digunakan."
             ]
           },
@@ -1216,7 +1240,7 @@ export const docs: Record<'en' | 'id', DocContent> = {
             "rows": [
               [
                 "WallpaperLive",
-                "Toolchain Rust dengan prasyarat linker Windows. Ikuti skrip build dan decoder yang dijelaskan README."
+                "Toolchain Rust dengan prasyarat linker Windows, serta WiX Toolset 3.14 melalui scripts\\Installer.ps1 untuk paket MSI. Ikuti skrip build dan Get-Decoder.ps1 di README."
               ],
               [
                 "TransparentBar",
@@ -1233,23 +1257,23 @@ export const docs: Record<'en' | 'id', DocContent> = {
             "items": [
               {
                 "label": "Lisensi WallpaperLive",
-                "url": "https://github.com/Raflyf/WallpaperLive/blob/46dad013e6498a963350840e13f6c445e09be5ce/LICENSE"
+                "url": "https://github.com/Raflyf/WallpaperLive/blob/ea1f8054b5bdadb5d989f05b659823e6724d6cc1/LICENSE"
               },
               {
                 "label": "Pemberitahuan dependensi WallpaperLive",
-                "url": "https://github.com/Raflyf/WallpaperLive/blob/46dad013e6498a963350840e13f6c445e09be5ce/THIRD_PARTY.md"
+                "url": "https://github.com/Raflyf/WallpaperLive/blob/ea1f8054b5bdadb5d989f05b659823e6724d6cc1/THIRD_PARTY.md"
               },
               {
                 "label": "Petunjuk build WallpaperLive",
-                "url": "https://github.com/Raflyf/WallpaperLive/blob/46dad013e6498a963350840e13f6c445e09be5ce/README.md"
+                "url": "https://github.com/Raflyf/WallpaperLive/blob/ea1f8054b5bdadb5d989f05b659823e6724d6cc1/README.md"
               },
               {
                 "label": "Lisensi TransparentBar",
-                "url": "https://github.com/Raflyf/TransparentBar/blob/2ccb731a63a1079ad650690a02ab0aee8724b9b9/LICENSE.md"
+                "url": "https://github.com/Raflyf/TransparentBar/blob/7ac092906efd334b781d487d198cf2ccef35928a/LICENSE.md"
               },
               {
                 "label": "Petunjuk build TransparentBar",
-                "url": "https://github.com/Raflyf/TransparentBar/blob/2ccb731a63a1079ad650690a02ab0aee8724b9b9/README.md"
+                "url": "https://github.com/Raflyf/TransparentBar/blob/7ac092906efd334b781d487d198cf2ccef35928a/README.md"
               },
               {
                 "label": "WallpaperLive Code signing policy",
@@ -1278,12 +1302,12 @@ export const docs: Record<'en' | 'id', DocContent> = {
 export const docSources = [
   {
     "name": "WallpaperLive",
-    "revision": "46dad013e6498a963350840e13f6c445e09be5ce",
-    "url": "https://github.com/Raflyf/WallpaperLive/blob/46dad013e6498a963350840e13f6c445e09be5ce/README.md"
+    "revision": "ea1f8054b5bdadb5d989f05b659823e6724d6cc1",
+    "url": "https://github.com/Raflyf/WallpaperLive/blob/ea1f8054b5bdadb5d989f05b659823e6724d6cc1/README.md"
   },
   {
     "name": "TransparentBar",
-    "revision": "2ccb731a63a1079ad650690a02ab0aee8724b9b9",
-    "url": "https://github.com/Raflyf/TransparentBar/blob/2ccb731a63a1079ad650690a02ab0aee8724b9b9/README.md"
+    "revision": "7ac092906efd334b781d487d198cf2ccef35928a",
+    "url": "https://github.com/Raflyf/TransparentBar/blob/7ac092906efd334b781d487d198cf2ccef35928a/README.md"
   }
 ];

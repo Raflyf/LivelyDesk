@@ -34,24 +34,25 @@ export const products: Record<ProductSlug, Product> = {
             {kind:'ul',items:[
               'Use videos, animated GIFs, or still images. The file picker accepts MP4, WebM, MKV, MOV, GIF, APNG, PNG, JPG, and other documented formats; decoding depends on libmpv and your GPU.',
               'Import individual files or folders and browse nine thumbnails per page. Search filenames, filter by folder, and assign the same file to All displays or different files per monitor.',
-              'Choose Fill or Fit, cap playback at 24, 30, 45, or 60 FPS, and enable audio for at most one wallpaper. Audio is off by default.',
+              'Choose Fill or Fit, cap playback at 24, 30, 45, or 60 FPS, select a 5-tier Quality preset (Native, High, Optimize, Medium, Low) beside FPS, and enable audio for at most one wallpaper. Audio is off by default.',
+              'Enable the optional Desktop Day Clock widget in the Day Clock tab (Anurati typography, HSV and hex color picker, size and opacity, and behind-icons desktop layering) and open TransparentBar from Settings.',
               'Auto-pause for fullscreen or maximized apps on the affected monitor. Battery power, session lock, and display sleep also pause playback. Manual Pause/Resume applies to every wallpaper.',
-              'Keep playback in the system tray. Start with Windows is optional; Check for updates opens a newer release page only after confirmation.'
+              'Keep playback in the system tray. Start with Windows is optional; in-app update notifications verify SHA-256 checksums before launching official MSI updates.'
             ]},
             {kind:'p',text:'WallpaperLive uses Rust and Win32 for its interface and libmpv for decoding. It is a separate project from Lively Wallpaper and does not supply an online wallpaper gallery.'}
           ]},
           { id:'setup',title:'How to set a video or GIF as your wallpaper',blocks:[
             {kind:'ol',items:[
-              'Open the official Releases page and choose the Windows x64 installer. Follow your device security policy when reviewing the unsigned installer.',
-              'Run Setup for your user account. If no matching local decoder is available, Setup asks before downloading libmpv. Follow the decoder instructions in the guide.',
+              'Open the official Releases page and choose the Windows x64 MSI installer (wallpaperlivesetup-v0.2.2.msi). Follow your device security policy when reviewing pre-SignPath unsigned installers.',
+              'Run Setup for your user account without administrator privileges. When applying a video without libmpv-2.dll present, review the in-app Acrylic consent prompt to download and verify the pinned decoder (or run scripts\\Get-Decoder.ps1 / place mpv-dev.7z offline).',
               'Save a compatible video, GIF, or image on your PC. Choose Add wallpaper or Add folder in WallpaperLive.',
               'Select its thumbnail, choose the target display or All displays, then select Set wallpaper. Choosing a thumbnail alone only changes the preview.',
-              'Adjust Placement, FPS, and Sound. Use Stop to remove live playback or Exit to close the app.'
+              'Adjust Placement, FPS, Quality, and Sound, or customize the Day Clock tab. Use Stop to remove live playback or Exit to close the app.'
             ]},
             {kind:'p',text:'Where to find wallpapers opens a panel of third-party browsing links. Those sites provide their own media and terms; WallpaperLive does not download their wallpapers for you.'}
           ]},
           { id:'requirements',title:'Requirements, cache, and resource use',blocks:[
-            {kind:'table',headings:['Item','What to know'],rows:[['Operating system','Windows 10 or Windows 11 on an x64 PC.'],['Decoder','Separate libmpv decoder, reused locally when compatible or downloaded with consent during Setup.'],['Cache','Oversized SDR videos can use display-sized cached copies. Originals remain in place. Cache preparation costs more than steady playback.'],['Multiple displays','Each active display has its own decoder. More screens can increase memory and GPU use.'],['Pause','The last frame and decoder remain attached for resume; pause does not mean all memory or VRAM is released.']]},
+            {kind:'table',headings:['Item','What to know'],rows:[['Operating system','Windows 10 or Windows 11 on an x64 PC.'],['Decoder','Separate libmpv decoder, reused locally when compatible or downloaded with explicit in-app consent and SHA-256 verification (or via Get-Decoder.ps1).'],['Cache','Oversized SDR videos can use display-sized cached copies across 5 quality presets (or bypass cache in Native mode). Originals remain in place. Cache preparation costs more than steady playback.'],['Multiple displays','Each active display has its own decoder. More screens can increase memory and GPU use.'],['Pause','The last frame and decoder remain attached for resume; pause does not mean all memory or VRAM is released.']]},
             {kind:'p',text:'A historical v0.1.6 desktop snapshot showed 37.8 MB and 1.5% CPU. The 4K cache-preparation snapshot showed 437.5 MB and 42.4% CPU for the app and worker together. These are separate observations, not expected limits for your PC.'}
           ]},
           {id:'questions',title:'Common questions before installing',blocks:[
@@ -73,24 +74,25 @@ export const products: Record<ProductSlug, Product> = {
             {kind:'ul',items:[
               'Gunakan video, GIF animasi, atau gambar. Pemilih berkas menerima MP4, WebM, MKV, MOV, GIF, APNG, PNG, JPG, dan format lain dalam dokumentasi; dukungan codec bergantung pada libmpv dan GPU.',
               'Impor berkas atau folder dan telusuri sembilan thumbnail per halaman. Cari nama berkas, filter folder, lalu pilih All displays atau berkas berbeda untuk setiap monitor.',
-              'Pilih Fill atau Fit, batasi pemutaran pada 24, 30, 45, atau 60 FPS, dan aktifkan suara untuk paling banyak satu wallpaper. Suara mati secara default.',
+              'Pilih Fill atau Fit, batasi pemutaran pada 24, 30, 45, atau 60 FPS, pilih 5 tingkat preset Quality (Native, High, Optimize, Medium, Low) di samping FPS, dan aktifkan suara untuk paling banyak satu wallpaper. Suara mati secara default.',
+              'Aktifkan widget opsional Desktop Day Clock di tab Day Clock (tipografi Anurati, pemilih warna HSV serta input hex, pengatur ukuran/opasitas, dan lapisan di belakang ikon desktop) serta pintasan Open TransparentBar di Settings.',
               'Auto-pause berlaku saat aplikasi fullscreen atau dimaksimalkan pada monitor terkait. Daya baterai, sesi terkunci, dan layar tidur juga menjeda pemutaran. Pause/Resume manual berlaku pada semua wallpaper.',
-              'Pemutaran tetap berjalan di system tray. Start with Windows bersifat opsional; Check for updates membuka halaman rilis baru setelah dikonfirmasi.'
+              'Pemutaran tetap berjalan di system tray. Start with Windows bersifat opsional; notifikasi pembaruan di dalam aplikasi memverifikasi checksum SHA-256 sebelum menjalankan pembaruan MSI resmi.'
             ]},
             {kind:'p',text:'Antarmuka WallpaperLive memakai Rust dan Win32, sedangkan decoding ditangani libmpv. Proyek ini berbeda dari Lively Wallpaper dan tidak menyediakan galeri wallpaper online.'}
           ]},
           {id:'setup',title:'Cara memasang wallpaper bergerak di PC atau laptop',blocks:[
             {kind:'ol',items:[
-              'Buka halaman Releases resmi dan pilih installer Windows x64. Ikuti kebijakan keamanan perangkat saat memeriksa installer yang belum ditandatangani.',
-              'Jalankan Setup untuk akun Anda. Jika tidak tersedia decoder lokal yang sesuai, Setup meminta persetujuan sebelum mengunduh libmpv. Ikuti petunjuk decoder dalam panduan.',
+              'Buka halaman Releases resmi dan pilih pemasang MSI Windows x64 (wallpaperlivesetup-v0.2.2.msi). Ikuti kebijakan keamanan perangkat saat memeriksa rilis pra-SignPath yang belum ditandatangani.',
+              'Jalankan Setup untuk akun Anda tanpa hak administrator. Saat menerapkan video tanpa libmpv-2.dll, tinjau dialog persetujuan Acrylic di dalam aplikasi untuk mengunduh serta memverifikasi decoder resmi (atau jalankan scripts\\Get-Decoder.ps1 / salin mpv-dev.7z secara offline).',
               'Simpan video, GIF, atau gambar yang kompatibel di PC. Pilih Add wallpaper atau Add folder di WallpaperLive.',
               'Pilih thumbnail, tentukan monitor atau All displays, lalu tekan Set wallpaper. Memilih thumbnail saja hanya mengganti pratinjau.',
-              'Sesuaikan Placement, FPS, dan Sound. Gunakan Stop untuk menghentikan wallpaper aktif atau Exit untuk menutup aplikasi.'
+              'Sesuaikan Placement, FPS, Quality, dan Sound, atau atur tab Day Clock. Gunakan Stop untuk menghentikan wallpaper aktif atau Exit untuk menutup aplikasi.'
             ]},
             {kind:'p',text:'Where to find wallpapers membuka panel tautan situs pihak ketiga. Media dan ketentuannya berasal dari situs tersebut; WallpaperLive tidak mengunduh wallpaper dari sana untuk Anda.'}
           ]},
           {id:'requirements',title:'Kebutuhan sistem, cache, dan penggunaan sumber daya',blocks:[
-            {kind:'table',headings:['Bagian','Yang perlu diketahui'],rows:[['Sistem operasi','Windows 10 atau Windows 11 pada PC x64.'],['Decoder','libmpv terpisah, digunakan dari berkas lokal yang sesuai atau diunduh atas persetujuan selama Setup.'],['Cache','Video SDR besar dapat memakai salinan cache sesuai layar. Berkas asli tetap ada. Persiapan cache memakai lebih banyak sumber daya daripada pemutaran stabil.'],['Banyak monitor','Setiap layar aktif memiliki decoder sendiri. Tambahan layar dapat meningkatkan penggunaan memori dan GPU.'],['Pause','Frame terakhir dan decoder tetap terpasang untuk melanjutkan pemutaran; pause bukan berarti seluruh memori atau VRAM dilepas.']]},
+            {kind:'table',headings:['Bagian','Yang perlu diketahui'],rows:[['Sistem operasi','Windows 10 atau Windows 11 pada PC x64.'],['Decoder','libmpv terpisah, digunakan dari berkas lokal yang cocok atau diunduh atas persetujuan eksplisit di dalam aplikasi disertai verifikasi SHA-256 (atau lewat Get-Decoder.ps1).'],['Cache','Video SDR besar dapat memakai salinan cache sesuai layar dengan 5 preset kualitas (atau melewati cache di mode Native). Berkas asli tetap ada. Persiapan cache memakai lebih banyak sumber daya daripada pemutaran stabil.'],['Banyak monitor','Setiap layar aktif memiliki decoder sendiri. Tambahan layar dapat meningkatkan penggunaan memori dan GPU.'],['Pause','Frame terakhir dan decoder tetap terpasang untuk melanjutkan pemutaran; pause bukan berarti seluruh memori atau VRAM dilepas.']]},
             {kind:'p',text:'Cuplikan desktop v0.1.6 menunjukkan 37.8 MB dan 1.5% CPU. Cuplikan persiapan cache 4K menunjukkan 437.5 MB dan 42.4% CPU untuk aplikasi dan worker. Angka tersebut berasal dari momen berbeda, bukan batas penggunaan pada PC Anda.'}
           ]},
           {id:'questions',title:'Pertanyaan sebelum memasang aplikasi',blocks:[
@@ -125,8 +127,8 @@ export const products: Record<ProductSlug, Product> = {
           ]},
           {id:'setup',title:'How to make the Windows taskbar transparent',blocks:[
             {kind:'ol',items:[
-              'Choose the installer or portable ZIP from the official Releases page. Normal use does not require administrator access.',
-              'For portable use, extract the entire ZIP into a permanent folder. Keep the executable and versioned bridge DLL together.',
+              'Choose the per-user MSI installer (TransparentBar-setup-v0.2.5.msi) or portable ZIP from the official Releases page. Normal use does not require administrator access.',
+              'For portable use, extract the entire ZIP into a permanent folder and keep the executable and versioned bridge DLL together. MSI upgrades keep the loaded bridge DLL intact without restarting Explorer and clean up older unlocked DLLs on startup.',
               'Close other taskbar customization tools, then open TransparentBar. Find its tray icon near the clock or in the tray overflow menu.',
               'Use Taskbar connector to enable or disable the maximized-window strip. Set Run at sign-in only if you want it.',
               'Choose Exit from the tray to restore the saved taskbar appearance. If Windows rejects restoration, the app reports an error and retains its saved state.'
@@ -163,8 +165,8 @@ export const products: Record<ProductSlug, Product> = {
           ]},
           {id:'setup',title:'Cara membuat taskbar transparan di Windows',blocks:[
             {kind:'ol',items:[
-              'Pilih installer atau ZIP portable dari halaman Releases resmi. Pemakaian normal tidak memerlukan hak administrator.',
-              'Untuk versi portable, ekstrak seluruh ZIP ke folder permanen. Simpan EXE dan DLL bridge berversi bersama.',
+              'Pilih pemasang MSI per pengguna (TransparentBar-setup-v0.2.5.msi) atau ZIP portable dari halaman Releases resmi. Pemakaian normal tidak memerlukan hak administrator.',
+              'Untuk versi portable, ekstrak seluruh ZIP ke folder permanen lalu simpan EXE dan DLL bridge berversi bersama. Pembaruan MSI mempertahankan DLL bridge yang sedang dimuat agar Explorer tidak perlu restart dan otomatis membersihkan DLL lama yang tidak terkunci saat aplikasi dimulai.',
               'Tutup alat kustomisasi taskbar lain, lalu buka TransparentBar. Cari ikon tray di dekat jam atau pada menu ikon tersembunyi.',
               'Gunakan Taskbar connector untuk mengaktifkan atau mematikan strip jendela. Pilih Run at sign-in hanya jika diperlukan.',
               'Pilih Exit dari tray untuk memulihkan tampilan taskbar yang tersimpan. Jika Windows menolak pemulihan, aplikasi menampilkan error dan mempertahankan status tersimpan.'
