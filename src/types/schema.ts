@@ -118,6 +118,7 @@ export interface Translation {
     wpDesc: string;
     wpIconAlt: string;
     wpChecklist: string[];
+    wpCompatibility: string;
     tbTitle: string;
     tbDesc: string;
     tbIconAlt: string;
@@ -125,6 +126,7 @@ export interface Translation {
     tbCompatibility: string;
     installerBtn: string;
     portableBtn: string;
+    wpChecksumBtn: string;
     sourceBtn: string;
     requirements: string;
     checksumNote: string;

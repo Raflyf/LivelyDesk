@@ -59,7 +59,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
                 </a>
               </h3>
             </div>
-            <p className="text-sm text-fg/75 mb-4 leading-relaxed">
+            <p className="text-sm text-fg/75 mb-4 leading-relaxed md:min-h-[4.25rem]">
               {t.download.wpDesc}
             </p>
             <a href={lang === 'id' ? '/wallpaperlive/id' : '/wallpaperlive'} className="mb-6 min-h-11 inline-flex items-center text-sm font-semibold text-accent-text underline underline-offset-4">
@@ -67,7 +67,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
             </a>
 
             {/* Feature Checklist */}
-            <ul className="text-xs font-mono text-fg/70 space-y-2 mb-8">
+            <ul className="text-xs font-mono text-fg/70 space-y-2 mb-6">
               {t.download.wpChecklist.map((item, idx) => (
                 <li key={idx} className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-burnt shrink-0" aria-hidden="true"></span>
@@ -75,6 +75,9 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
                 </li>
               ))}
             </ul>
+            <p className="text-xs text-fg/70 leading-relaxed mb-6 md:min-h-[3.75rem]">
+              {t.download.wpCompatibility}
+            </p>
           </div>
 
           <div className="space-y-4 pt-6 border-t border-fg/10">
@@ -87,15 +90,24 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
               <span>{installerLabel(wl.downloadUrl)}</span>
             </a>
 
-            {wl.portableUrl && (
-              <a
-                href={wl.portableUrl}
-                className="motion-button w-full min-h-11 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-fg/5 hover:bg-fg/10 text-fg border border-fg/15 font-semibold text-xs"
-              >
+            <a
+              href={
+                wl.portableUrl ??
+                (wl.version
+                  ? `https://github.com/Raflyf/WallpaperLive/releases/download/${encodeURIComponent(wl.version)}/SHA256SUMS.txt`
+                  : 'https://github.com/Raflyf/WallpaperLive/releases/latest')
+              }
+              target={wl.portableUrl ? undefined : '_blank'}
+              rel={wl.portableUrl ? undefined : 'noopener noreferrer'}
+              className="motion-button w-full min-h-11 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-fg/5 hover:bg-fg/10 text-fg border border-fg/15 font-semibold text-xs"
+            >
+              {wl.portableUrl ? (
                 <Package className="w-4 h-4 text-accent-text shrink-0" aria-hidden="true" />
-                <span>{t.download.portableBtn}{wl.portableSizeMb ? ` (${wl.portableSizeMb})` : ''}</span>
-              </a>
-            )}
+              ) : (
+                <ShieldCheck className="w-4 h-4 text-accent-text shrink-0" aria-hidden="true" />
+              )}
+              <span>{wl.portableUrl ? `${t.download.portableBtn}${wl.portableSizeMb ? ` (${wl.portableSizeMb})` : ''}` : t.download.wpChecksumBtn}</span>
+            </a>
 
             {/* Release version, size, and download count */}
             <div className="text-center py-0.5">
@@ -151,7 +163,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
                 </a>
               </h3>
             </div>
-            <p className="text-sm text-fg/75 mb-4 leading-relaxed">
+            <p className="text-sm text-fg/75 mb-4 leading-relaxed md:min-h-[4.25rem]">
               {t.download.tbDesc}
             </p>
             <a href={lang === 'id' ? '/transparentbar/id' : '/transparentbar'} className="mb-6 min-h-11 inline-flex items-center text-sm font-semibold text-accent-text underline underline-offset-4">
@@ -173,7 +185,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
                 <span>{t.download.tbStartup}</span>
               </li>
             </ul>
-            <p className="text-xs text-fg/70 leading-relaxed mb-6">
+            <p className="text-xs text-fg/70 leading-relaxed mb-6 md:min-h-[3.75rem]">
               {t.download.tbCompatibility}
             </p>
           </div>
@@ -188,15 +200,13 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
               <span>{installerLabel(tb.downloadUrl)}</span>
             </a>
 
-            {tb.portableUrl && (
-              <a
-                href={tb.portableUrl}
-                className="motion-button w-full min-h-11 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-fg/5 hover:bg-fg/10 text-fg border border-fg/15 font-semibold text-xs"
-              >
-                <Package className="w-4 h-4 text-accent-text shrink-0" aria-hidden="true" />
-                <span>{t.download.portableBtn}{tb.portableSizeMb ? ` (${tb.portableSizeMb})` : ''}</span>
-              </a>
-            )}
+            <a
+              href={tb.portableUrl ?? 'https://github.com/Raflyf/TransparentBar/releases/latest'}
+              className="motion-button w-full min-h-11 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-fg/5 hover:bg-fg/10 text-fg border border-fg/15 font-semibold text-xs"
+            >
+              <Package className="w-4 h-4 text-accent-text shrink-0" aria-hidden="true" />
+              <span>{t.download.portableBtn}{tb.portableSizeMb ? ` (${tb.portableSizeMb})` : ''}</span>
+            </a>
 
             {/* Release version, size, and download count */}
             <div className="text-center py-0.5">
@@ -253,36 +263,38 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
         <article
           id="code-signing-policy"
           data-reveal
-          className="scroll-mt-24 bg-surface p-6 rounded-2xl border border-fg/10 text-xs leading-relaxed text-fg/80 space-y-3"
+          className="scroll-mt-24 bg-surface p-6 rounded-2xl border border-fg/10 text-xs leading-relaxed text-fg/80 flex flex-col justify-between"
         >
-          <div className="flex items-center gap-2 font-display font-bold text-base text-fg">
-            <ShieldCheck className="w-4 h-4 text-accent-text shrink-0" aria-hidden="true" />
-            <h3>{t.download.signingTitle}</h3>
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 font-display font-bold text-base text-fg">
+              <ShieldCheck className="w-4 h-4 text-accent-text shrink-0" aria-hidden="true" />
+              <h3>{t.download.signingTitle}</h3>
+            </div>
+            <p className="text-fg font-medium">
+              {t.download.signingNoticePrefix}
+              <a href="https://signpath.io/" target="_blank" rel="noopener noreferrer" className="text-accent-text underline underline-offset-2">
+                SignPath.io
+              </a>
+              {t.download.signingNoticeMiddle}
+              <a href="https://signpath.org/" target="_blank" rel="noopener noreferrer" className="text-accent-text underline underline-offset-2">
+                SignPath Foundation
+              </a>
+              .
+            </p>
+            <p>{t.download.signingStatus}</p>
+            <ul className="space-y-1 font-mono text-[11px] text-fg/80">
+              <li>
+                <strong className="text-fg">{t.download.signingAuthorsLabel}</strong> {t.download.signingRoleValue}
+              </li>
+              <li>
+                <strong className="text-fg">{t.download.signingReviewersLabel}</strong> {t.download.signingRoleValue} ({t.download.signingReviewersNote})
+              </li>
+              <li>
+                <strong className="text-fg">{t.download.signingApproversLabel}</strong> {t.download.signingRoleValue} ({t.download.signingApproversNote})
+              </li>
+            </ul>
           </div>
-          <p className="text-fg font-medium">
-            {t.download.signingNoticePrefix}
-            <a href="https://signpath.io/" target="_blank" rel="noopener noreferrer" className="text-accent-text underline underline-offset-2">
-              SignPath.io
-            </a>
-            {t.download.signingNoticeMiddle}
-            <a href="https://signpath.org/" target="_blank" rel="noopener noreferrer" className="text-accent-text underline underline-offset-2">
-              SignPath Foundation
-            </a>
-            .
-          </p>
-          <p>{t.download.signingStatus}</p>
-          <ul className="space-y-1 font-mono text-[11px] text-fg/80">
-            <li>
-              <strong className="text-fg">{t.download.signingAuthorsLabel}</strong> {t.download.signingRoleValue}
-            </li>
-            <li>
-              <strong className="text-fg">{t.download.signingReviewersLabel}</strong> {t.download.signingRoleValue} ({t.download.signingReviewersNote})
-            </li>
-            <li>
-              <strong className="text-fg">{t.download.signingApproversLabel}</strong> {t.download.signingRoleValue} ({t.download.signingApproversNote})
-            </li>
-          </ul>
-          <div className="flex flex-wrap gap-x-4 gap-y-1 sm:gap-y-2 pt-1 font-mono text-[11px]">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 sm:gap-y-2 pt-3 mt-4 border-t border-fg/10 font-mono text-[11px]">
             <a
               href="https://github.com/Raflyf/WallpaperLive#code-signing-policy"
               target="_blank"
@@ -305,20 +317,22 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
         <article
           id="privacy-policy"
           data-reveal
-          className="scroll-mt-24 bg-surface p-6 rounded-2xl border border-fg/10 text-xs leading-relaxed text-fg/80 space-y-3"
+          className="scroll-mt-24 bg-surface p-6 rounded-2xl border border-fg/10 text-xs leading-relaxed text-fg/80 flex flex-col justify-between"
         >
-          <div className="flex items-center gap-2 font-display font-bold text-base text-fg">
-            <Lock className="w-4 h-4 text-accent-text shrink-0" aria-hidden="true" />
-            <h3>{t.download.privacyTitle}</h3>
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 font-display font-bold text-base text-fg">
+              <Lock className="w-4 h-4 text-accent-text shrink-0" aria-hidden="true" />
+              <h3>{t.download.privacyTitle}</h3>
+            </div>
+            <p className="text-fg font-medium">{t.download.privacyIntro}</p>
+            <p>
+              <strong className="text-fg">{t.download.privacyWpLabel}</strong> {t.download.privacyWpText}
+            </p>
+            <p>
+              <strong className="text-fg">{t.download.privacyTbLabel}</strong> {t.download.privacyTbText}
+            </p>
           </div>
-          <p className="text-fg font-medium">{t.download.privacyIntro}</p>
-          <p>
-            <strong className="text-fg">{t.download.privacyWpLabel}</strong> {t.download.privacyWpText}
-          </p>
-          <p>
-            <strong className="text-fg">{t.download.privacyTbLabel}</strong> {t.download.privacyTbText}
-          </p>
-          <div className="flex flex-wrap gap-x-4 gap-y-1 sm:gap-y-2 pt-1 font-mono text-[11px]">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 sm:gap-y-2 pt-3 mt-4 border-t border-fg/10 font-mono text-[11px]">
             <a
               href="https://github.com/Raflyf/WallpaperLive#privacy-policy"
               target="_blank"
