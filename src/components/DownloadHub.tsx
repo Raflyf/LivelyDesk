@@ -174,11 +174,11 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
             <ul className="text-xs font-mono text-fg/70 space-y-2 mb-6 md:min-h-[7rem] lg:min-h-[5rem] xl:min-h-[4rem]">
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-burnt shrink-0" aria-hidden="true"></span>
-                <span>{t.benchmark.tbRowRam} · {t.hero.stat2Sub}</span>
+                <span>{t.hero.stat3} · {t.hero.stat3Sub}</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-burnt shrink-0" aria-hidden="true"></span>
-                <span>{t.features.items.f2Title}</span>
+                <span>{t.features.items.f4Title}</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-burnt shrink-0" aria-hidden="true"></span>
@@ -270,28 +270,14 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
               <ShieldCheck className="w-4 h-4 text-accent-text shrink-0" aria-hidden="true" />
               <h3>{t.download.signingTitle}</h3>
             </div>
-            <p className="text-fg font-medium">
-              {t.download.signingNoticePrefix}
-              <a href="https://signpath.io/" target="_blank" rel="noopener noreferrer" className="text-accent-text underline underline-offset-2">
-                SignPath.io
-              </a>
-              {t.download.signingNoticeMiddle}
-              <a href="https://signpath.org/" target="_blank" rel="noopener noreferrer" className="text-accent-text underline underline-offset-2">
-                SignPath Foundation
-              </a>
-              .
-            </p>
-            <p>{t.download.signingStatus}</p>
-            <ul className="space-y-1 font-mono text-[11px] text-fg/80">
-              <li>
-                <strong className="text-fg">{t.download.signingAuthorsLabel}</strong> {t.download.signingRoleValue}
-              </li>
-              <li>
-                <strong className="text-fg">{t.download.signingReviewersLabel}</strong> {t.download.signingRoleValue} ({t.download.signingReviewersNote})
-              </li>
-              <li>
-                <strong className="text-fg">{t.download.signingApproversLabel}</strong> {t.download.signingRoleValue} ({t.download.signingApproversNote})
-              </li>
+            <p className="text-fg font-medium">{t.download.signingSummary}</p>
+            <p>{t.download.signingDetails}</p>
+            <ul className="space-y-1.5 font-mono text-[11px] text-fg/80">
+              {t.download.signingSteps.map((step, idx) => (
+                <li key={idx}>
+                  <strong className="text-fg">{step.label}</strong> {step.text}
+                </li>
+              ))}
             </ul>
           </div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 sm:gap-y-2 pt-3 mt-4 border-t border-fg/10 md:min-h-[3.5rem] lg:min-h-0 font-mono text-[11px]">
@@ -301,7 +287,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
               rel="noopener noreferrer"
               className="min-h-11 sm:min-h-0 inline-flex items-center text-accent-text underline underline-offset-2"
             >
-              WallpaperLive policy
+              WallpaperLive verification
             </a>
             <a
               href="https://github.com/Raflyf/TransparentBar#code-signing-policy"

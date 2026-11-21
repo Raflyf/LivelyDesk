@@ -1,5 +1,22 @@
 export type Language = 'id' | 'en';
 
+export type SimulatorTabKey = 'desktop' | 'library' | 'clock' | 'settings' | 'taskbar' | 'telemetry';
+export type TelemetryStateKey = 'tray' | 'openPanel' | 'cached' | 'paused';
+
+export interface TelemetryStateSpec {
+  label: string;
+  versionTag: string;
+  ram: string;
+  cpu: string;
+  disk: string;
+  net: string;
+  caption: string;
+  alt: string;
+  imageBase: string;
+  width: number;
+  height: number;
+}
+
 export interface Translation {
   nav: {
     simulator: string;
@@ -37,38 +54,32 @@ export interface Translation {
     desktopTag: string;
     desktopBadge: string;
     videoUnsupported: string;
-    tabs: {
-      desktop: string;
-      library: string;
-      taskbar: string;
-      telemetry: string;
-    };
-    alts: {
-      desktop: string;
-      library: string;
-      taskbar: string;
-      telemetry: string;
-    };
-    captions: {
-      desktopTitle: string;
-      desktopDesc: string;
-      libraryTitle: string;
-      libraryDesc: string;
-      taskbarTitle: string;
-      taskbarDesc: string;
-      telemetryTitle: string;
-      telemetryDesc: string;
+    inspectFull: string;
+    closeLightbox: string;
+    tabs: Record<SimulatorTabKey, string>;
+    tags: Record<Exclude<SimulatorTabKey, 'telemetry'>, string>;
+    alts: Record<Exclude<SimulatorTabKey, 'telemetry'>, string>;
+    captions: Record<SimulatorTabKey, { title: string; desc: string }>;
+    telemetryStates: Record<TelemetryStateKey, TelemetryStateSpec>;
+    telemetryMetricsLabel: {
+      ram: string;
+      cpu: string;
+      disk: string;
+      net: string;
     };
   };
   features: {
     badge: string;
     title: string;
     subtitle: string;
+    featuredBadge: string;
     items: {
       f1Title: string;
       f1Desc: string;
+      f1Tags: string[];
       f2Title: string;
       f2Desc: string;
+      f2Tags: string[];
       f3Title: string;
       f3Desc: string;
       f4Title: string;
@@ -83,32 +94,36 @@ export interface Translation {
     badge: string;
     title: string;
     subtitle: string;
+    compare: {
+      badge: string;
+      title: string;
+      subtitle: string;
+      beforeLabel: string;
+      afterLabel: string;
+      beforeMetric: string;
+      afterMetric: string;
+      deltaBadge: string;
+      sliderAriaLabel: string;
+      presetBefore: string;
+      presetSplit: string;
+      presetAfter: string;
+      beforeAlt: string;
+      afterAlt: string;
+    };
     stateCol: string;
     ramCol: string;
     cpuCol: string;
     notesCol: string;
-    row1State: string;
-    row1Ram: string;
-    row1Cpu: string;
-    row1Notes: string;
-    row2State: string;
-    row2Ram: string;
-    row2Cpu: string;
-    row2Notes: string;
-    row3State: string;
-    row3Ram: string;
-    row3Cpu: string;
-    row3Notes: string;
-    row4State: string;
-    row4Ram: string;
-    row4Cpu: string;
-    row4Notes: string;
-    tbRowState: string;
-    tbRowRam: string;
-    tbRowCpu: string;
-    tbRowNotes: string;
-    disclaimer: string;
     contextTitle: string;
+    rows: {
+      state: string;
+      ram: string;
+      ramMb: number;
+      cpu: string;
+      notes: string;
+      highlight?: 'accent' | 'subtle';
+    }[];
+    disclaimer: string;
   };
   download: {
     badge: string;
@@ -140,16 +155,9 @@ export interface Translation {
     downloadsUnavailable: string;
     seeGithub: string;
     signingTitle: string;
-    signingNoticePrefix: string;
-    signingNoticeMiddle: string;
-    signingStatus: string;
-    signingRolesTitle: string;
-    signingAuthorsLabel: string;
-    signingReviewersLabel: string;
-    signingApproversLabel: string;
-    signingRoleValue: string;
-    signingReviewersNote: string;
-    signingApproversNote: string;
+    signingSummary: string;
+    signingDetails: string;
+    signingSteps: { label: string; text: string }[];
     privacyTitle: string;
     privacyIntro: string;
     privacyWpLabel: string;

@@ -94,7 +94,7 @@ export const docs: Record<'en' | 'id', DocContent> = {
           {
             "kind": "note",
             "title": "Unsigned applications",
-            "text": "Releases published prior to SignPath CI integration are unsigned; see the Code signing policy on the download page and upstream READMEs for current status. Windows may show an unknown-publisher or SmartScreen warning. Download from the official repositories and follow your organization's security policy. Keep antivirus and Windows protections enabled. Do not run as administrator to bypass desktop access errors."
+            "text": "Official releases are currently unsigned (no Authenticode code-signing certificate is active); see Release verification on the download page and upstream READMEs. Windows may show an unknown-publisher or SmartScreen warning. Download only from the official GitHub Releases pages, verify SHA256SUMS.txt before running Setup, and keep antivirus and Windows protections enabled. Do not run as administrator to bypass desktop access errors."
           },
           {
             "kind": "p",
@@ -110,7 +110,7 @@ export const docs: Record<'en' | 'id', DocContent> = {
           {
             "kind": "ol",
             "items": [
-              "Open WallpaperLive Releases and download the Windows x64 MSI installer (wallpaperlivesetup-v0.2.2.msi). Keep it in a dedicated folder without unrelated DLLs.",
+              "Open WallpaperLive Releases and download the Windows x64 MSI installer (wallpaperlivesetup-v0.2.5.msi). Keep it in a dedicated folder without unrelated DLLs.",
               "Run Setup as your normal Windows user without administrator privileges; the MSI installer itself makes no network request.",
               "When applying a video without libmpv-2.dll present, review the in-app Acrylic consent prompt and confirm to download and verify the pinned decoder automatically (or run scripts\\Get-Decoder.ps1 once).",
               "Finish Setup, open WallpaperLive from the Start menu, and open Settings to read Version (taken from the executable build rather than the installer filename)."
@@ -247,6 +247,14 @@ export const docs: Record<'en' | 'id', DocContent> = {
                 "Select Native (original media untouched, bypasses cache), High, Optimize, Medium, or Low (720p cap) beside FPS in Library."
               ],
               [
+                "GPU preference",
+                "Select Auto (prefers detected dedicated GPU), High Performance, or Power Saving in Library for playback rendering and cache encoding."
+              ],
+              [
+                "Acrylic blur",
+                "Switch the panel window in Settings between translucent Smoked Ink Black (#111111) Acrylic and crisp solid styling."
+              ],
+              [
                 "Day Clock",
                 "Optional Desktop Day Clock tab with Anurati typography, HSV wheel and hex picker with Confirm, 12h/24h format, size/opacity controls, and behind-icons layering."
               ],
@@ -286,7 +294,7 @@ export const docs: Record<'en' | 'id', DocContent> = {
         "blocks": [
           {
             "kind": "p",
-            "text": "Oversized SDR videos start from the original while one background worker creates display-sized H.264/AAC MP4 copies according to the chosen Quality preset (Native bypasses cache conversion; High, Optimize, Medium, and Low build quality-isolated copies). Smaller sources are not upscaled. HDR and animated images use originals. Conversion preserves original files, audio, aspect ratio, and playback speed, but its compression is lossy."
+            "text": "Oversized SDR videos start from the original while one background worker encodes display-sized H.264/AAC MP4 copies according to the chosen Quality preset (Native bypasses cache conversion; High, Optimize, Medium, and Low build quality-isolated copies). Hardware-capable PCs use h264_nvenc, h264_amf, or h264_qsv with d3d11va-copy decode following your selected GPU preference, falling back automatically to multi-threaded libx264 on CPU. Smaller sources are not upscaled. HDR and animated images use originals."
           },
           {
             "kind": "table",
@@ -514,8 +522,8 @@ export const docs: Record<'en' | 'id', DocContent> = {
                 "Check cache preparation and monitor count. Usage depends on media, resolution, and drivers; screenshots are not resource ceilings."
               ],
               [
-                "Desktop access is blocked",
-                "Leave playback stopped. Do not elevate the app or disable Windows protections."
+                "Permissions",
+                "Leave playback stopped. Do not run as administrator or disable Windows protections."
               ],
               [
                 "Transparency does not activate",
@@ -613,22 +621,22 @@ export const docs: Record<'en' | 'id', DocContent> = {
           },
           {
             "kind": "p",
-            "text": "Source builds are optional for installer users. The linked READMEs describe packaging and contribution checks. Automated builds do not establish desktop compatibility. Optional donations do not unlock or restrict features; support pages open only when selected."
+            "text": "Source builds are optional for installer users. The linked READMEs describe packaging and contribution checks. Automated builds do not establish desktop compatibility. Optional donations do not enable or restrict features; support pages open only when selected."
           },
           {
             "kind": "links",
             "items": [
               {
                 "label": "WallpaperLive license",
-                "url": "https://github.com/Raflyf/WallpaperLive/blob/ea1f8054b5bdadb5d989f05b659823e6724d6cc1/LICENSE"
+                "url": "https://github.com/Raflyf/WallpaperLive/blob/main/LICENSE"
               },
               {
                 "label": "WallpaperLive dependency notices",
-                "url": "https://github.com/Raflyf/WallpaperLive/blob/ea1f8054b5bdadb5d989f05b659823e6724d6cc1/THIRD_PARTY.md"
+                "url": "https://github.com/Raflyf/WallpaperLive/blob/main/THIRD_PARTY.md"
               },
               {
                 "label": "WallpaperLive source build instructions",
-                "url": "https://github.com/Raflyf/WallpaperLive/blob/ea1f8054b5bdadb5d989f05b659823e6724d6cc1/README.md"
+                "url": "https://github.com/Raflyf/WallpaperLive/blob/main/README.md"
               },
               {
                 "label": "TransparentBar license",
@@ -731,7 +739,7 @@ export const docs: Record<'en' | 'id', DocContent> = {
           {
             "kind": "note",
             "title": "Aplikasi tanpa tanda tangan digital",
-            "text": "Rilis sebelum integrasi SignPath CI belum ditandatangani; lihat Code signing policy di halaman unduhan dan README sumber untuk status terbaru. Windows dapat menampilkan peringatan penerbit tidak dikenal atau SmartScreen. Unduh dari repositori resmi dan ikuti kebijakan keamanan organisasi Anda. Biarkan antivirus serta perlindungan Windows aktif. Jangan jalankan sebagai administrator untuk melewati kesalahan akses desktop."
+            "text": "Rilis resmi saat ini bersifat unsigned (tidak memakai sertifikat Authenticode); lihat Verifikasi rilis di halaman unduhan dan README sumber. Windows dapat menampilkan peringatan penerbit tidak dikenal atau SmartScreen. Unduh hanya dari halaman GitHub Releases resmi, cocokkan hash SHA256SUMS.txt sebelum memasang, dan biarkan antivirus serta perlindungan Windows aktif. Jangan jalankan sebagai administrator untuk melewati kesalahan akses desktop."
           },
           {
             "kind": "p",
@@ -747,7 +755,7 @@ export const docs: Record<'en' | 'id', DocContent> = {
           {
             "kind": "ol",
             "items": [
-              "Buka WallpaperLive Releases dan unduh pemasang MSI Windows x64 (wallpaperlivesetup-v0.2.2.msi). Simpan dalam folder khusus tanpa DLL lain yang tidak terkait.",
+              "Buka WallpaperLive Releases dan unduh pemasang MSI Windows x64 (wallpaperlivesetup-v0.2.5.msi). Simpan dalam folder khusus tanpa DLL lain yang tidak terkait.",
               "Jalankan Setup sebagai pengguna Windows biasa tanpa hak administrator; pemasang MSI itu sendiri tidak mengirim permintaan jaringan.",
               "Saat menerapkan video tanpa libmpv-2.dll, tinjau dialog persetujuan Acrylic di dalam aplikasi lalu konfirmasi untuk mengunduh serta memverifikasi decoder resmi secara otomatis (atau jalankan scripts\\Get-Decoder.ps1 sekali).",
               "Selesaikan Setup, buka WallpaperLive dari Start menu, lalu buka Settings dan baca Version (nilai ini diambil dari build aplikasi, bukan nama file pemasang)."
@@ -884,6 +892,14 @@ export const docs: Record<'en' | 'id', DocContent> = {
                 "Pilih Native (media asli utuh tanpa konversi cache), High, Optimize, Medium, atau Low (batas 720p) di samping FPS pada Library."
               ],
               [
+                "Preferensi GPU",
+                "Pilih Auto (mengutamakan GPU dedicated yang terdeteksi), High Performance, atau Power Saving di Library untuk rendering pemutaran dan encoding cache."
+              ],
+              [
+                "Acrylic blur",
+                "Ubah tampilan jendela panel di Settings antara Smoked Ink Black (#111111) Acrylic transparan atau mode solid tajam."
+              ],
+              [
                 "Day Clock",
                 "Tab opsional Desktop Day Clock dengan tipografi Anurati, pemilih warna HSV dan input hex beserta tombol Confirm, format 12h/24h, kontrol ukuran/opasitas, serta penempatan di belakang ikon desktop."
               ],
@@ -923,7 +939,7 @@ export const docs: Record<'en' | 'id', DocContent> = {
         "blocks": [
           {
             "kind": "p",
-            "text": "Video SDR beresolusi besar diputar dari file asli saat satu worker latar membuat salinan H.264/AAC MP4 sesuai preset Quality yang dipilih (Native melewati konversi cache; High, Optimize, Medium, dan Low membuat salinan terpisah per preset). Sumber kecil tidak diperbesar. HDR dan gambar animasi memakai file asli. Konversi mempertahankan file asli, audio, rasio aspek, serta kecepatan pemutaran, tetapi kompresinya lossy."
+            "text": "Video SDR beresolusi besar diputar dari file asli saat satu worker latar menyandikan salinan H.264/AAC MP4 ukuran layar sesuai preset Quality yang dipilih (Native melewati konversi cache; High, Optimize, Medium, dan Low membuat salinan terpisah per preset). Perangkat yang mendukung memakai encoder GPU h264_nvenc, h264_amf, atau h264_qsv dengan decode d3d11va-copy sesuai preferensi GPU, lalu fallback otomatis ke CPU multi-thread libx264. Sumber kecil tidak diperbesar."
           },
           {
             "kind": "table",
@@ -1257,15 +1273,15 @@ export const docs: Record<'en' | 'id', DocContent> = {
             "items": [
               {
                 "label": "Lisensi WallpaperLive",
-                "url": "https://github.com/Raflyf/WallpaperLive/blob/ea1f8054b5bdadb5d989f05b659823e6724d6cc1/LICENSE"
+                "url": "https://github.com/Raflyf/WallpaperLive/blob/main/LICENSE"
               },
               {
                 "label": "Pemberitahuan dependensi WallpaperLive",
-                "url": "https://github.com/Raflyf/WallpaperLive/blob/ea1f8054b5bdadb5d989f05b659823e6724d6cc1/THIRD_PARTY.md"
+                "url": "https://github.com/Raflyf/WallpaperLive/blob/main/THIRD_PARTY.md"
               },
               {
                 "label": "Petunjuk build WallpaperLive",
-                "url": "https://github.com/Raflyf/WallpaperLive/blob/ea1f8054b5bdadb5d989f05b659823e6724d6cc1/README.md"
+                "url": "https://github.com/Raflyf/WallpaperLive/blob/main/README.md"
               },
               {
                 "label": "Lisensi TransparentBar",
@@ -1302,8 +1318,8 @@ export const docs: Record<'en' | 'id', DocContent> = {
 export const docSources = [
   {
     "name": "WallpaperLive",
-    "revision": "ea1f8054b5bdadb5d989f05b659823e6724d6cc1",
-    "url": "https://github.com/Raflyf/WallpaperLive/blob/ea1f8054b5bdadb5d989f05b659823e6724d6cc1/README.md"
+    "revision": "main",
+    "url": "https://github.com/Raflyf/WallpaperLive/blob/main/README.md"
   },
   {
     "name": "TransparentBar",

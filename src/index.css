@@ -261,3 +261,117 @@ header nav button:is(:hover, :focus-visible)::after { scale: 1; }
   from { opacity: .35; }
   to { opacity: 1; }
 }
+
+/* Interactive Workbench Tab Indicator */
+.showcase-tablist {
+  position: relative;
+}
+
+.showcase-tab-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 1rem;
+  background: var(--inverse);
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--color-ink) 16%, transparent);
+  pointer-events: none;
+  z-index: 0;
+  transition: transform 260ms var(--motion-ease), width 260ms var(--motion-ease), height 260ms var(--motion-ease), opacity 160ms ease;
+}
+
+/* Before / After 4K GPU Cache Comparison Scrubber */
+.compare-stage {
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.compare-before {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 calc(100% - var(--split, 50%)) 0 0);
+}
+
+.compare-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--split, 50%);
+  width: 2px;
+  transform: translateX(-50%);
+  background: var(--color-burnt);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-ink) 75%, transparent);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.compare-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background: var(--color-ink);
+  color: var(--color-cream);
+  border: 2px solid var(--color-burnt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--color-ink) 45%, transparent);
+}
+
+.compare-range {
+  width: 100%;
+  accent-color: var(--color-burnt);
+  cursor: ew-resize;
+}
+
+/* Telemetry Proportional Bar */
+.telemetry-bar-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--color-cream) 12%, transparent);
+  overflow: hidden;
+}
+
+.telemetry-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: var(--color-burnt);
+  transition: width 320ms var(--motion-ease);
+}
+
+/* Native Lightbox Dialog */
+.lightbox-dialog {
+  margin: auto;
+  max-width: min(94vw, 1280px);
+  max-height: 92dvh;
+  width: 100%;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--color-cream) 20%, transparent);
+  border-radius: 1.25rem;
+  background: var(--color-ink);
+  color: var(--color-cream);
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.72);
+  overflow: hidden;
+}
+
+.lightbox-dialog::backdrop {
+  background: rgba(17, 17, 17, 0.88);
+  backdrop-filter: blur(4px);
+}
+
+.lightbox-dialog:not([open]) {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase-tab-indicator,
+  .telemetry-bar-fill {
+    transition: none;
+  }
+}
