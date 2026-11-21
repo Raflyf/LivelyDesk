@@ -334,7 +334,7 @@ header nav button:is(:hover, :focus-visible)::after { scale: 1; }
   width: 100%;
   height: 6px;
   border-radius: 9999px;
-  background: color-mix(in srgb, var(--color-cream) 12%, transparent);
+  background: color-mix(in srgb, var(--fg) 12%, transparent);
   overflow: hidden;
 }
 

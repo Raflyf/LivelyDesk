@@ -235,14 +235,14 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
         role="tabpanel"
         id="showcase-panel"
         aria-labelledby={`showcase-tab-${activeTab}`}
-        className="media-frame overflow-x-hidden rounded-3xl p-3 sm:p-5 bg-ink shadow-2xl border border-fg/20"
+        className="overflow-x-hidden rounded-3xl p-3 sm:p-5 bg-surface text-fg shadow-xs border border-fg/10"
       >
 
         {/* Frame Top Window Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 text-cream/75 text-xs font-mono border-b border-cream/10 mb-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 text-fg/75 text-xs font-mono border-b border-fg/10 mb-3">
           <div className="flex min-w-0 items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-burnt shrink-0" aria-hidden="true" />
-            <span className="text-cream/85 font-semibold truncate">{frameTag}</span>
+            <span className="text-fg/85 font-semibold truncate">{frameTag}</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 max-w-full">
@@ -258,11 +258,11 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
                   vid.muted = nextMuted;
                   setVideoMuted(nextMuted);
                 }}
-                className="inline-flex min-h-11 sm:min-h-8 items-center gap-1.5 px-2.5 py-1 rounded-lg bg-cream/10 hover:bg-cream/20 text-cream text-xs font-mono transition-colors cursor-pointer"
+                className="inline-flex min-h-11 sm:min-h-8 items-center gap-1.5 px-2.5 py-1 rounded-lg bg-fg/5 hover:bg-fg/10 border border-fg/15 text-fg text-xs font-mono transition-colors cursor-pointer"
               >
                 {videoMuted
-                  ? <VolumeX className="w-3.5 h-3.5 text-burnt shrink-0" aria-hidden="true" />
-                  : <Volume2 className="w-3.5 h-3.5 text-burnt shrink-0" aria-hidden="true" />}
+                  ? <VolumeX className="w-3.5 h-3.5 text-accent-text shrink-0" aria-hidden="true" />
+                  : <Volume2 className="w-3.5 h-3.5 text-accent-text shrink-0" aria-hidden="true" />}
                 <span>{videoMuted ? t.simulator.soundOff : t.simulator.soundOn}</span>
               </button>
             )}
@@ -276,9 +276,9 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
                   width: activeImageSpec.width,
                   height: activeImageSpec.height,
                 })}
-                className="inline-flex min-h-11 sm:min-h-8 items-center gap-1.5 px-2.5 py-1 rounded-lg bg-cream/10 hover:bg-cream/20 text-cream text-xs font-mono transition-colors cursor-pointer"
+                className="inline-flex min-h-11 sm:min-h-8 items-center gap-1.5 px-2.5 py-1 rounded-lg bg-fg/5 hover:bg-fg/10 border border-fg/15 text-fg text-xs font-mono transition-colors cursor-pointer"
               >
-                <Maximize2 className="w-3.5 h-3.5 text-burnt shrink-0" aria-hidden="true" />
+                <Maximize2 className="w-3.5 h-3.5 text-accent-text shrink-0" aria-hidden="true" />
                 <span>{t.simulator.inspectFull}</span>
               </button>
             )}
@@ -286,7 +286,7 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
               href={repoLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-11 sm:min-h-0 items-center gap-1.5 text-xs text-burnt hover:underline whitespace-nowrap"
+              className="inline-flex min-h-11 sm:min-h-0 items-center gap-1.5 text-xs text-accent-text hover:underline whitespace-nowrap"
             >
               <span>{t.simulator.sourceLink}</span>
               <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
@@ -310,11 +310,11 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
                     className={`min-h-11 px-3.5 py-2 rounded-xl text-xs font-mono transition-colors cursor-pointer flex items-center gap-2 ${
                       selected
                         ? 'bg-burnt text-ink font-bold'
-                        : 'bg-cream/5 hover:bg-cream/10 text-cream/85 border border-cream/15'
+                        : 'bg-fg/5 hover:bg-fg/10 text-fg/85 border border-fg/15'
                     }`}
                   >
                     <span>{stateSpec.label}</span>
-                    <span className={`tabular-nums ${selected ? 'text-ink/85' : 'text-cream/65'}`}>
+                    <span className={`tabular-nums ${selected ? 'text-ink/85' : 'text-fg/65'}`}>
                       {stateSpec.ram}
                     </span>
                   </button>
@@ -322,29 +322,29 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
               })}
             </div>
 
-            <dl className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 rounded-2xl bg-cream/[0.04] border border-cream/10 p-3 font-mono text-xs">
+            <dl className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 rounded-2xl bg-canvas/70 border border-fg/10 p-3 font-mono text-xs">
               <div>
-                <dt className="text-[10px] uppercase tracking-wider text-cream/65">{t.simulator.telemetryMetricsLabel.ram}</dt>
-                <dd className="text-sm font-bold text-cream tabular-nums mt-0.5">{activeTelemetry.ram}</dd>
+                <dt className="text-[10px] uppercase tracking-wider text-fg/65">{t.simulator.telemetryMetricsLabel.ram}</dt>
+                <dd className="text-sm font-bold text-fg tabular-nums mt-0.5">{activeTelemetry.ram}</dd>
               </div>
               <div>
-                <dt className="text-[10px] uppercase tracking-wider text-cream/65">{t.simulator.telemetryMetricsLabel.cpu}</dt>
-                <dd className="text-sm font-bold text-cream tabular-nums mt-0.5">{activeTelemetry.cpu}</dd>
+                <dt className="text-[10px] uppercase tracking-wider text-fg/65">{t.simulator.telemetryMetricsLabel.cpu}</dt>
+                <dd className="text-sm font-bold text-fg tabular-nums mt-0.5">{activeTelemetry.cpu}</dd>
               </div>
               <div>
-                <dt className="text-[10px] uppercase tracking-wider text-cream/65">{t.simulator.telemetryMetricsLabel.disk}</dt>
-                <dd className="text-sm font-bold text-cream tabular-nums mt-0.5">{activeTelemetry.disk}</dd>
+                <dt className="text-[10px] uppercase tracking-wider text-fg/65">{t.simulator.telemetryMetricsLabel.disk}</dt>
+                <dd className="text-sm font-bold text-fg tabular-nums mt-0.5">{activeTelemetry.disk}</dd>
               </div>
               <div>
-                <dt className="text-[10px] uppercase tracking-wider text-cream/65">{t.simulator.telemetryMetricsLabel.net}</dt>
-                <dd className="text-sm font-bold text-cream tabular-nums mt-0.5">{activeTelemetry.net}</dd>
+                <dt className="text-[10px] uppercase tracking-wider text-fg/65">{t.simulator.telemetryMetricsLabel.net}</dt>
+                <dd className="text-sm font-bold text-fg tabular-nums mt-0.5">{activeTelemetry.net}</dd>
               </div>
             </dl>
           </div>
         )}
 
         {/* Lightweight WebM + Faststart MP4 Video / WebP Screenshot Stage */}
-        <div className="relative rounded-2xl overflow-hidden bg-ink flex items-center justify-center border border-cream/10 aspect-video">
+        <div className="relative rounded-2xl overflow-hidden bg-ink flex items-center justify-center border border-fg/15 aspect-video">
           <video
             ref={videoRef}
             hidden={activeTab !== 'desktop'}
@@ -374,7 +374,7 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
                 height: activeImageSpec.height,
               })}
               aria-label={t.simulator.inspectFull}
-              className="w-full h-full block cursor-zoom-in focus-visible:outline-2 focus-visible:outline-cream"
+              className="w-full h-full block cursor-zoom-in focus-visible:outline-2 focus-visible:outline-burnt"
             >
               <picture key={activeImageSpec.src} className="w-full h-full block motion-swap">
                 <source type="image/webp" srcSet={activeImageSpec.srcSet} sizes="(max-width: 768px) 92vw, 1080px" />
@@ -393,12 +393,12 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
         </div>
 
         {/* Caption Bar */}
-        <div key={`${activeTab}-${telemetryKey}`} className="motion-swap mt-4 px-3.5 py-3 rounded-2xl bg-cream/5 border border-cream/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-cream">
+        <div key={`${activeTab}-${telemetryKey}`} className="motion-swap mt-4 px-3.5 py-3 rounded-2xl bg-canvas/70 border border-fg/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-fg">
           <div>
-            <h3 className="font-display font-bold text-sm text-cream">
+            <h3 className="font-display font-bold text-sm text-fg">
               {activeTab === 'telemetry' ? `${caption.title}: ${activeTelemetry.label}` : caption.title}
             </h3>
-            <p className="text-xs text-cream/80 mt-0.5 leading-relaxed">
+            <p className="text-xs text-fg/75 mt-0.5 leading-relaxed">
               {activeTab === 'telemetry' ? activeTelemetry.caption : caption.desc}
             </p>
           </div>
