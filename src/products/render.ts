@@ -103,7 +103,7 @@ export function renderProductPage(slug: ProductSlug, lang: PageLanguage) {
   };
   const head = renderPageMetadata({title:copy.title,description:copy.description,lang,paths,schema,image:product.icon});
   const sections = copy.sections.map(section => '<section data-reveal class="docs-section" id="' + section.id + '"><h2>' + escapeHtml(section.title) + '</h2>' + section.blocks.map(block => renderBlock(block, section.title)).join('') + '</section>').join('');
-  const iconWebp = slug === 'wallpaperlive' ? '/icons/wallpaperlive-256-v1.webp' : '/icons/transparentbar-256-v1.webp';
+  const iconWebp = slug === 'wallpaperlive' ? '/icons/wallpaperlive-256-v1.webp' : '/icons/transparentbar-256-v2.webp';
 
   let previewBlock: string;
   if (slug === 'wallpaperlive') {

@@ -22,7 +22,7 @@ export const SupportYapp: React.FC<SupportYappProps> = ({ t }) => {
           <div className="hidden lg:flex shrink-0 items-center gap-2 pb-1" aria-hidden="true">
             <img src="/icons/wallpaperlive-128-v1.webp" alt="" width="44" height="44" loading="lazy" decoding="async" className="h-11 w-11 object-contain" />
             <span className="text-fg/40">+</span>
-            <img src="/icons/transparentbar-128-v1.webp" alt="" width="44" height="44" loading="lazy" decoding="async" className="h-11 w-11 object-contain" />
+            <img src="/icons/transparentbar-128-v2.webp" alt="" width="44" height="44" loading="lazy" decoding="async" className="h-11 w-11 object-contain" />
           </div>
         </div>
 

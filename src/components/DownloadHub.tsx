@@ -156,7 +156,7 @@ export const DownloadHub: React.FC<DownloadHubProps> = ({ t, releases, lang }) =
             </div>
 
             <div className="flex items-center gap-4 mb-4">
-              <img src="/icons/transparentbar-128-v1.webp" alt={t.download.tbIconAlt} width="64" height="64" loading="lazy" decoding="async" className="product-icon h-16 w-16 shrink-0 object-contain" />
+              <img src="/icons/transparentbar-128-v2.webp" alt={t.download.tbIconAlt} width="64" height="64" loading="lazy" decoding="async" className="product-icon h-16 w-16 shrink-0 object-contain" />
               <h3 className="font-display text-2xl font-bold text-fg">
                 <a href={lang === 'id' ? '/transparentbar/id' : '/transparentbar'} className="hover:text-accent-text inline-flex items-center min-h-11">
                   {t.download.tbTitle}
