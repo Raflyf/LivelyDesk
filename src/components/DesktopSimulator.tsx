@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { setupVideoVisibility } from '../motion';
 import { Translation } from '../types/content';
 import type { SimulatorTabKey, TelemetryStateKey } from '../types/schema';
-import { Monitor, LayoutGrid, Clock, Settings, Layers, Activity, ExternalLink, Maximize2, X } from 'lucide-react';
+import { Monitor, LayoutGrid, Clock, Settings, Layers, Activity, ExternalLink, Maximize2, X, Volume2, VolumeX } from 'lucide-react';
 
 interface SimulatorProps {
   t: Translation;
@@ -246,6 +246,26 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
           </div>
 
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 max-w-full">
+            {activeTab === 'desktop' && (
+              <button
+                type="button"
+                aria-pressed={!videoMuted}
+                onClick={() => {
+                  const vid = videoRef.current;
+                  if (!vid) return;
+                  const nextMuted = !vid.muted;
+                  if (!nextMuted && vid.volume === 0) vid.volume = 1;
+                  vid.muted = nextMuted;
+                  setVideoMuted(nextMuted);
+                }}
+                className="inline-flex min-h-11 sm:min-h-8 items-center gap-1.5 px-2.5 py-1 rounded-lg bg-cream/10 hover:bg-cream/20 text-cream text-xs font-mono transition-colors cursor-pointer"
+              >
+                {videoMuted
+                  ? <VolumeX className="w-3.5 h-3.5 text-burnt shrink-0" aria-hidden="true" />
+                  : <Volume2 className="w-3.5 h-3.5 text-burnt shrink-0" aria-hidden="true" />}
+                <span>{videoMuted ? t.simulator.soundOff : t.simulator.soundOn}</span>
+              </button>
+            )}
             {activeImageSpec && (
               <button
                 type="button"
@@ -338,8 +358,8 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
             aria-label={t.simulator.alts.desktop}
             className="w-full h-full object-contain select-none"
           >
-            <source src="/video/wallpaperlive-showcase-v0.2.5.webm" type="video/webm" />
-            <source src="/video/wallpaperlive-showcase-v0.2.5.mp4" type="video/mp4" />
+            <source src="/video/wallpaperlive-showcase-v0.2.5-v2.webm" type="video/webm" />
+            <source src="/video/wallpaperlive-showcase-v0.2.5-v2.mp4" type="video/mp4" />
             {t.simulator.videoUnsupported}
           </video>
 

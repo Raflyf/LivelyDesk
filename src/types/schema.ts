@@ -56,6 +56,8 @@ export interface Translation {
     videoUnsupported: string;
     inspectFull: string;
     closeLightbox: string;
+    soundOff: string;
+    soundOn: string;
     tabs: Record<SimulatorTabKey, string>;
     tags: Record<Exclude<SimulatorTabKey, 'telemetry'>, string>;
     alts: Record<Exclude<SimulatorTabKey, 'telemetry'>, string>;

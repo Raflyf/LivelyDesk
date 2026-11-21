@@ -39,6 +39,8 @@ export const localeEn: Translation = {
     videoUnsupported: "Your browser does not support HTML5 video playback.",
     inspectFull: "Inspect full view",
     closeLightbox: "Close full view",
+    soundOff: "Sound: Off",
+    soundOn: "Sound: On",
     tabs: {
       desktop: "Live Video",
       library: "Library & Acrylic",

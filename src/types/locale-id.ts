@@ -39,6 +39,8 @@ export const localeId: Translation = {
     videoUnsupported: "Browser Anda tidak mendukung pemutaran video HTML5.",
     inspectFull: "Lihat ukuran penuh",
     closeLightbox: "Tutup pratinjau penuh",
+    soundOff: "Suara: Mati",
+    soundOn: "Suara: Aktif",
     tabs: {
       desktop: "Video Langsung",
       library: "Library & Acrylic",
