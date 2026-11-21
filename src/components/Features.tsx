@@ -32,17 +32,17 @@ export const Features: React.FC<FeaturesProps> = ({ t }) => {
         </p>
       </div>
 
-      {/* Asymmetric Editorial Bento Grid: 2 Featured Pillars + 4 Spec Cards */}
+      {/* Asymmetric Editorial Bento Grid: Consistent Surface Cards Across All Columns */}
       <div className="space-y-5">
         <div className="motion-sequence grid grid-cols-1 lg:grid-cols-12 gap-5">
           {/* Featured 1 (7 columns on desktop): GPU-Accelerated 4K Cache */}
           <article
             data-reveal
-            className="motion-card lg:col-span-7 bg-surface p-7 sm:p-8 rounded-3xl border border-fg/12 hover:border-burnt/50 shadow-xs flex flex-col justify-between gap-6"
+            className="motion-card lg:col-span-7 bg-surface p-7 sm:p-8 rounded-3xl border border-fg/10 hover:border-burnt/40 shadow-xs flex flex-col justify-between gap-6"
           >
             <div>
               <div className="flex items-center justify-between gap-3 mb-5">
-                <div className="w-11 h-11 rounded-2xl bg-burnt/15 border border-burnt/25 flex items-center justify-center">
+                <div className="w-11 h-11 rounded-2xl bg-fg/5 flex items-center justify-center">
                   <Cpu className="w-5 h-5 text-accent-text" aria-hidden="true" />
                 </div>
                 <span className="px-3 py-1 rounded-full bg-fg/5 border border-fg/10 text-[11px] font-mono text-fg/80 font-semibold">
@@ -52,7 +52,7 @@ export const Features: React.FC<FeaturesProps> = ({ t }) => {
               <h3 className="font-display text-xl sm:text-2xl font-bold text-fg mb-3">
                 {items.f1Title}
               </h3>
-              <p className="text-sm text-fg/80 leading-relaxed">
+              <p className="text-sm text-fg/75 leading-relaxed">
                 {items.f1Desc}
               </p>
             </div>
@@ -65,25 +65,25 @@ export const Features: React.FC<FeaturesProps> = ({ t }) => {
             </div>
           </article>
 
-          {/* Featured 2 (5 columns on desktop, Ink Black accent card): Day Clock & Acrylic */}
+          {/* Featured 2 (5 columns on desktop): Day Clock & Acrylic */}
           <article
             data-reveal
-            className="media-frame motion-card lg:col-span-5 bg-ink text-cream p-7 sm:p-8 rounded-3xl border border-cream/15 hover:border-burnt shadow-sm flex flex-col justify-between gap-6"
+            className="motion-card lg:col-span-5 bg-surface p-7 sm:p-8 rounded-3xl border border-fg/10 hover:border-burnt/40 shadow-xs flex flex-col justify-between gap-6"
           >
             <div>
-              <div className="w-11 h-11 rounded-2xl bg-burnt text-ink flex items-center justify-center mb-5">
-                <Clock className="w-5 h-5" aria-hidden="true" />
+              <div className="w-11 h-11 rounded-2xl bg-fg/5 flex items-center justify-center mb-5">
+                <Clock className="w-5 h-5 text-accent-text" aria-hidden="true" />
               </div>
-              <h3 className="font-display text-xl sm:text-2xl font-bold text-cream mb-3">
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-fg mb-3">
                 {items.f2Title}
               </h3>
-              <p className="text-sm text-cream/80 leading-relaxed">
+              <p className="text-sm text-fg/75 leading-relaxed">
                 {items.f2Desc}
               </p>
             </div>
             <div className="flex flex-wrap gap-2 pt-2">
               {items.f2Tags.map(tag => (
-                <span key={tag} className="px-2.5 py-1 rounded-lg bg-cream/10 border border-cream/15 text-[11px] font-mono text-cream">
+                <span key={tag} className="px-2.5 py-1 rounded-lg bg-fg/5 border border-fg/10 text-[11px] font-mono text-fg/85">
                   {tag}
                 </span>
               ))}

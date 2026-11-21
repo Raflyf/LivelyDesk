@@ -8,7 +8,7 @@ interface SimulatorProps {
   t: Translation;
 }
 
-const TAB_KEYS: SimulatorTabKey[] = ['desktop', 'library', 'clock', 'settings', 'taskbar', 'telemetry'];
+const TAB_KEYS: SimulatorTabKey[] = ['desktop', 'library', 'clock', 'settings', 'telemetry', 'taskbar'];
 const TELEMETRY_KEYS: TelemetryStateKey[] = ['tray', 'openPanel', 'cached', 'paused'];
 
 const IMAGE_MEDIA_MAP: Record<Exclude<SimulatorTabKey, 'desktop' | 'telemetry'>, { base: string; width: number; height: number; repoLink: string }> = {
@@ -55,6 +55,7 @@ function webpSrcSet(base: string): string {
 export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
   const [activeTab, setActiveTab] = useState<SimulatorTabKey>('desktop');
   const [telemetryKey, setTelemetryKey] = useState<TelemetryStateKey>('tray');
+  const [videoMuted, setVideoMuted] = useState<boolean>(true);
   const [lightboxMedia, setLightboxMedia] = useState<{ src: string; alt: string; caption: string; width: number; height: number } | null>(null);
   const [indicator, setIndicator] = useState<{ left: number; top: number; width: number; height: number; ready: boolean }>({
     left: 0,
@@ -330,7 +331,8 @@ export const DesktopSimulator: React.FC<SimulatorProps> = ({ t }) => {
             poster="/images/opt/showcase-video-poster-640-v2.webp"
             preload="none"
             loop
-            muted
+            muted={videoMuted}
+            onVolumeChange={event => setVideoMuted(event.currentTarget.muted)}
             playsInline
             controls
             aria-label={t.simulator.alts.desktop}
