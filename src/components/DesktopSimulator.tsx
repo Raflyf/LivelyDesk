@@ -40,14 +40,14 @@ const IMAGE_MEDIA_MAP: Record<Exclude<SimulatorTabKey, 'desktop' | 'telemetry'>,
 
 function webpUrl(base: string, size: 640 | 1200 | 1280): string {
   if (base === 'desktop-preview') {
-    return `/images/opt/desktop-preview-${size === 640 ? '640' : '1200'}-v1.webp`;
+    return `/images/opt/desktop-preview-${size === 640 ? '640' : '1200'}-v2.webp`;
   }
   return `/images/opt/${base}-${size}-v2.webp`;
 }
 
 function webpSrcSet(base: string): string {
   if (base === 'desktop-preview') {
-    return '/images/opt/desktop-preview-640-v1.webp 640w, /images/opt/desktop-preview-1200-v1.webp 1200w';
+    return '/images/opt/desktop-preview-640-v2.webp 640w, /images/opt/desktop-preview-1200-v2.webp 1200w';
   }
   return `/images/opt/${base}-640-v2.webp 640w, /images/opt/${base}-1280-v2.webp 1280w`;
 }
